@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @SpringBootApplication
 @EnableJpaRepositories(basePackages={"com.library.repository"})
 @EnableWebSecurity
-@EnableAutoConfiguration
 public class LibraryApplication {
 
 	public static void main(String[] args) {

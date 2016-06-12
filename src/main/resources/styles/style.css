@@ -1,0 +1,73 @@
+.glyphicon {
+    color: green;
+}
+
+li:hover {
+    background-color: rgba(143, 147, 141, 0.82);
+}
+
+#footer {
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+div.jumbotron {
+    color: green;
+}
+
+body { padding-bottom: 70px; }
+
+p {
+    font-size: 15px;
+    word-wrap: break-word;
+}
+
+img {
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-inline .form-group{
+    padding: 10px;
+    margin: 10px;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+}
+
+.fullImg {
+    height: 900px;
+    width: 675px;
+    max-width: 100%;
+}
+
+dd {
+    word-wrap: break-word;
+}
+
+
+.thumbnail {
+    margin: 10px;
+}
+
+.thumbnail > img {
+    display: block;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.panel {
+    margin: 5px;
+}
+
+.bg-success {
+    width: 1000px;
+    height: 150px;
+    font-size: 14px;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 30px;
+}
