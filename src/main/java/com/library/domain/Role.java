@@ -1,5 +1,7 @@
 package com.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -16,6 +18,7 @@ public class Role implements Serializable{
 
     @OneToOne
     @JoinColumn(name = "userId")
+    @JsonIgnore
     private User user;
 
     private String role;
