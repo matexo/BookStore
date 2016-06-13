@@ -3,7 +3,6 @@ package com.library.service;
 import com.library.domain.QUser;
 import com.library.domain.Role;
 import com.library.domain.User;
-import com.library.repository.interfaces.RoleRepository;
 import com.library.repository.interfaces.UserRepository;
 import com.library.util.DataUtil;
 import com.library.util.Token;
@@ -35,7 +34,7 @@ public class UserService {
         newUser.setEmail(user.getEmail());
         newUser.setPassword(user.getPassword());
         newUser.setToken(Token.generateToken());
-        newUser.setTimestampCounter(new Timestamp(DataUtil.currentTimeInMillis));
+        newUser.setActivationTimeStamp(new Timestamp(DataUtil.currentTimeInMillis));
         newUser.setActivated(false);
         Role role = new Role();
         role.setRole("ROLE_USER");
@@ -51,7 +50,7 @@ public class UserService {
         User user = userRepository.findOne(QUser.user.token.eq(token));
         if(user != null)
         {
-            if(user.getTimestampCounter().after(new Date(System.currentTimeMillis() - Token.activationTokenTime)))
+            if(user.getActivationTimeStamp().after(new Date(System.currentTimeMillis() - Token.activationTokenTime)))
             {
                 user.setActivated(true);
                 user.setToken(null);
@@ -60,7 +59,7 @@ public class UserService {
             }
             else {
                 user.setToken(Token.generateToken());
-                user.setTimestampCounter(new Timestamp(System.currentTimeMillis()));
+                user.setActivationTimeStamp(new Timestamp(System.currentTimeMillis()));
                 userRepository.save(user);
                 //wyslac email z nowym
                 return false;

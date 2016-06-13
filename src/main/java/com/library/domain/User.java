@@ -45,7 +45,7 @@ public class User implements Serializable {
 
     private String token;
 
-    @OneToOne(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -57,12 +57,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    private int tryCounter = 0;
-
     @DateTimeFormat
-    private Timestamp timestampCounter;
+    @Column(name = "acvTimeStamp")
+    private Timestamp activationTimeStamp;
 
-    @OneToMany(mappedBy = "user" , fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CustomerOrder> orderList;
 
     public Long getId() {
@@ -113,20 +112,12 @@ public class User implements Serializable {
         this.token = token;
     }
 
-    public int getTryCounter() {
-        return tryCounter;
+    public Timestamp getActivationTimeStamp() {
+        return activationTimeStamp;
     }
 
-    public void setTryCounter(int tryCounter) {
-        this.tryCounter = tryCounter;
-    }
-
-    public Timestamp getTimestampCounter() {
-        return timestampCounter;
-    }
-
-    public void setTimestampCounter(Timestamp timestampCounter) {
-        this.timestampCounter = timestampCounter;
+    public void setActivationTimeStamp(Timestamp activationTimeStamp) {
+        this.activationTimeStamp = activationTimeStamp;
     }
 
     public List<CustomerOrder> getOrderList() {
