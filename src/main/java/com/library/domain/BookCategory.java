@@ -1,5 +1,6 @@
 package com.library.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,6 +16,7 @@ public class BookCategory {
     @Id
     @NotNull
     @Size(min = 3 , max = 5)
+    @Column(name = "book_category_id")
     private String bookCategoryId;
 
     @NotNull
@@ -35,5 +37,21 @@ public class BookCategory {
 
     public void setBookCategoryId(String bookCategoryId) {
         this.bookCategoryId = bookCategoryId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BookCategory that = (BookCategory) o;
+
+        return bookCategory.equals(that.bookCategory);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return bookCategory.hashCode();
     }
 }

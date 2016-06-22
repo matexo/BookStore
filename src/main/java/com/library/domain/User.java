@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Matexo on 2016-06-12.
  */
 @Entity
-@Table(name = "client")
+@Table(name = "users")
 public class User implements Serializable {
 
     @Id
@@ -42,6 +42,18 @@ public class User implements Serializable {
     @NotNull
     @Column(nullable = false)
     private boolean activated = false;
+
+    @NotNull
+    @Column(nullable = false)
+    private String apiKey;
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     private String token;
 
