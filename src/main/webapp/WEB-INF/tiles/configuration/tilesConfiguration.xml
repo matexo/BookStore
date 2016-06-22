@@ -9,8 +9,7 @@
         <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
         <put-attribute name="content3" value="" />
-        <put-attribute name="footer" value="" />
-
+        <put-attribute name="footer" value="/WEB-INF/tiles/layouts/footer.jsp" />
     </definition>
 
     <definition name="home" extends="base">
@@ -26,9 +25,19 @@
     </definition>
 
     <definition name="adminMenu" extends="base">
-        <put-attribute name="title" value="Panel Administratora" />
+        <put-attribute name="title" value="Embik | Panel Administratora" />
         <put-attribute name="navbar" value="/WEB-INF/tiles/navbars/navbar-admin.jsp" />
         <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
+    </definition>
+
+    <definition name="login" extends="base">
+        <put-attribute name="title" value="Embik | Logowanie" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/login.jsp" />
+    </definition>
+
+    <definition name="userForm" extends="base">
+        <put-attribute name="title" value="Embik | Rejestracja" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/userForm.jsp" />
     </definition>
 </tiles-definitions>
