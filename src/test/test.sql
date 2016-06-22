@@ -37,3 +37,7 @@ INSERT INTO book_category VALUES ('SZT', 'Sztuka');
 INSERT INTO book_category VALUES ('THR', 'Thriller, horror');
 INSERT INTO book_category VALUES ('TUR', 'Turystyka i podróże');
 INSERT INTO book_category VALUES ('ZDR', 'Zdrowie, rodzina, związki');
+
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year, category_id) VALUES ('Andrzej Sapkowski',FALSE,'Zaje',111,100,'Miecz przeznaczenia',120.5 , 2015, 'FAN');
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year, category_id) VALUES ('Andrzej Sapkowski',FALSE,'Zaje',111,100,'Krew Elfów',120.5 , 2015, 'FAN');
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year, category_id) VALUES ('Andrzej Sapkowski',FALSE,'Zaje',111,100,'Ostatnie Życzenie',120.5 , 2015, 'FAN');

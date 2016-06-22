@@ -1,6 +1,6 @@
 (function () {
     var app = angular.module('bookStore', ['ngStorage']);
-    
+
     app.controller('BookCategoryController', function ($scope, $http) {
         $http.get('/api/book/category/all').success(function (result) {
             $scope.categories = result;
@@ -18,4 +18,10 @@
             localStorage.setItem('loggedIn', false);
         };
     });
+
+    app.controller('FeaturedBooksController', function ($scope, $http) {
+        $http.get('/api/book/all').success(function (result) {
+            $scope.books = result;
+        });
+    })
 })();
