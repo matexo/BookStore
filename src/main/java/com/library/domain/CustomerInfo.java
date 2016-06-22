@@ -1,5 +1,7 @@
 package com.library.domain;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -11,7 +13,7 @@ import java.io.Serializable;
  * Created by Matexo on 2016-06-12.
  */
 @Entity
-public class Customer implements Serializable {
+public class CustomerInfo implements Serializable {
     private static final long serialVersionUID = -3771448259691684792L;
 
     @Id
@@ -26,7 +28,7 @@ public class Customer implements Serializable {
     private String surname;
     @Pattern(regexp = "^[0-9]{9,15}$")
     private String phoneNumber;
-    @Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+    @Email
     private String email;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
@@ -34,7 +36,7 @@ public class Customer implements Serializable {
     @Valid
     private Adress adress;
 
-    public Customer() {
+    public CustomerInfo() {
         adress = new Adress();
     }
 

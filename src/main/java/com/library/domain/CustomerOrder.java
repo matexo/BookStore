@@ -21,7 +21,7 @@ public class CustomerOrder implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "customerId")
     @Valid
-    private Customer customer;
+    private CustomerInfo customerInfo;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "cartID")
@@ -66,7 +66,7 @@ public class CustomerOrder implements Serializable {
 
 
     public CustomerOrder() {
-        customer = new Customer();
+        customerInfo = new CustomerInfo();
     }
 
     public Long getOrderId() {
@@ -77,12 +77,12 @@ public class CustomerOrder implements Serializable {
         this.orderId = orderId;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public CustomerInfo getCustomerInfo() {
+        return customerInfo;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerInfo(CustomerInfo customerInfo) {
+        this.customerInfo = customerInfo;
     }
 
     public Cart getCart() {

@@ -22,7 +22,7 @@ public class Cart implements Serializable {
     private static final long serialVersionUID = -6059866759215199201L;
 
     @Id
-    private String clientId;
+    private String cartId;
 
     @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id")
@@ -38,10 +38,10 @@ public class Cart implements Serializable {
         totalCost = new BigDecimal(0);
     }
 
-    public Cart(String clientId)
+    public Cart(String cartId)
     {
         this();
-        this.clientId = clientId;
+        this.cartId = cartId;
     }
 
     public Map<Long, CartItem> getCartItems()
@@ -85,16 +85,13 @@ public class Cart implements Serializable {
         }
     }
 
-    public String getClientId()
-    {
-        return clientId;
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setClientId(String clientId)
-    {
-        this.clientId = clientId;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
-
 
     //TODO ZMIENIC NA COS FAJNIEJSZEGO
     public void addShippmentCost(String shippingMethod)

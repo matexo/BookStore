@@ -6,13 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Created by Matexo on 2016-06-05.
  */
 @Entity
 @Table
-public class BookCategory {
+public class BookCategory implements Serializable {
     @Id
     @NotNull
     @Size(min = 3 , max = 5)

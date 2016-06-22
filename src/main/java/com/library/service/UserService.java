@@ -102,6 +102,14 @@ public class UserService {
         else return "ROLE_ANO";
     }
 
+    public User getUserInfo(String apiKey) {
+        User user = null;
+        if(apiKey != null) {
+            user = userRepository.findOne(QUser.user.apiKey.eq(apiKey));
+        }
+        return user;
+    }
+
     //do testow
     public User getUser()
     {
