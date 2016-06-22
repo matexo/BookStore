@@ -1,8 +1,3 @@
-INSERT INTO book( author , deleted , description , pages , quantity, title , unit_price , year , category_id)
-VALUES ('TESTA',FALSE,'TESTD',111,100,'TESTT',120.5 , 2015, 'TST');
-INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values ('TESTC' , 'TESTN' , current_date , 1 , 1);
-INSERT INTO customer_message(customer_email , date , message) values ('test@test.pl' , current_date , 'testm');
-
 INSERT INTO book_category VALUES ('ALB', 'Albumy');
 INSERT INTO book_category VALUES ('AUD', 'Audiobooki');
 INSERT INTO book_category VALUES ('BIO', 'Biografie');
@@ -37,3 +32,10 @@ INSERT INTO book_category VALUES ('SZT', 'Sztuka');
 INSERT INTO book_category VALUES ('THR', 'Thriller, horror');
 INSERT INTO book_category VALUES ('TUR', 'Turystyka i podróże');
 INSERT INTO book_category VALUES ('ZDR', 'Zdrowie, rodzina, związki');
+INSERT INTO book( author , deleted , description , pages , quantity, title , unit_price , year)
+VALUES ('TESTA',FALSE,'TESTD',111,100,'TESTT',120.5 , 2015);
+INSERT INTO book_to_category VALUES (1 , 'ALB');
+INSERT INTO book_to_category VALUES (1 , 'AUD');
+INSERT INTO book_to_category VALUES (1 , 'BIO');
+INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values ('TESTC' , 'TESTN' , current_date , 1 , 1);
+INSERT INTO customer_message(customer_email , date , message) values ('test@test.pl' , current_date , 'testm');

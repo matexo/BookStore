@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +29,7 @@ public class BookService {
     public List<Book> getBookByCategory(BookCategory bookCategory)
     {
         return Lists.newArrayList(bookRepository.findAll(
-                QBook.book.bookCategory.eq(bookCategory)
+                QBook.book.bookCategory.contains(bookCategory)
                         .and(QBook.book.deleted.eq(false))));
     }
 

@@ -23,6 +23,7 @@ public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="book_id")
     private Long bookId;
 
     @Size(min = 1, max = 30)
@@ -52,12 +53,12 @@ public class Book implements Serializable {
     @NotNull
     private boolean deleted = false;
 
-    @OneToMany(mappedBy = "book")
-    private List<BookImage> bookImageList;
-
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    private BookCategory bookCategory;
+    @ManyToMany
+    @JoinTable(
+            name="book_to_category",
+            joinColumns=@JoinColumn(name="book", referencedColumnName="book_id"),
+            inverseJoinColumns=@JoinColumn(name="category", referencedColumnName="book_category_id"))
+    private List<BookCategory> bookCategory;
 
     @OneToMany(mappedBy = "book")
     private List<BookRating> bookRatingList;
@@ -134,19 +135,11 @@ public class Book implements Serializable {
         this.deleted = deleted;
     }
 
-    public List<BookImage> getBookImageList() {
-        return bookImageList;
-    }
-
-    public void setBookImageList(List<BookImage> bookImageList) {
-        this.bookImageList = bookImageList;
-    }
-
-    public BookCategory getBookCategory() {
+    public List<BookCategory> getBookCategory() {
         return bookCategory;
     }
 
-    public void setBookCategory(BookCategory bookCategory) {
+    public void setBookCategory(List<BookCategory> bookCategory) {
         this.bookCategory = bookCategory;
     }
 
