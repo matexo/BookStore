@@ -4,6 +4,7 @@ import com.library.domain.Book;
 import com.library.domain.BookCategory;
 import com.library.service.BookCategoryService;
 import com.library.service.BookService;
+import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private BookCategoryService bookCategoryService;
@@ -44,7 +48,7 @@ public class BookController {
         BookCategory bookCategory = bookCategoryService.getBookCategory(category);
         if(bookCategory != null)
             return new ResponseEntity<>(bookService.getBookByCategory(bookCategory) , HttpStatus.OK);
-        return new ResponseEntity<List<Book>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = "/category/all" , method = RequestMethod.GET)
@@ -53,31 +57,34 @@ public class BookController {
         return new ResponseEntity<>(bookCategoryService.getAllBookCategory(), HttpStatus.OK);
     }
 
-    // weryfikacja
     @RequestMapping(value = "" , method = RequestMethod.POST)
-    public ResponseEntity<Book> addNewBook(@RequestBody Book book)
+    public ResponseEntity<Book> addNewBook(@RequestBody Book book , @RequestHeader("api-key") String apiKey)
     {
-        Book newBook = bookService.addNewBook(book);
-        if(newBook != null)
-            return new ResponseEntity<>(newBook , HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
+            Book newBook = bookService.addNewBook(book);
+            if (newBook != null)
+                return new ResponseEntity<>(newBook, HttpStatus.OK);
+            else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } else return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    //weryfikacja
     @RequestMapping(value = "/{bookId}" , method = RequestMethod.PUT)
-    public ResponseEntity<Long> editBook(@PathVariable Long bookId , @RequestBody Book book)
+    public ResponseEntity<Long> editBook(@PathVariable Long bookId , @RequestBody Book book , @RequestHeader("api-key") String apiKey)
     {
-        Long id = bookService.editBook(book , bookId);
-        if(id != null) return new ResponseEntity<>(id , HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
+            Long id = bookService.editBook(book, bookId);
+            if (id != null) return new ResponseEntity<>(id, HttpStatus.OK);
+            else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
-    //weryfikacja
     @RequestMapping(value = "/{bookId}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Long> deleteBook(@PathVariable Long bookId)
+    public ResponseEntity<Long> deleteBook(@PathVariable Long bookId , @RequestHeader("api-key") String apiKey)
     {
-        Long id = bookService.deleteBook(bookId);
-        if(id != null) return new ResponseEntity<>(id , HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
+            Long id = bookService.deleteBook(bookId);
+            if (id != null) return new ResponseEntity<>(id, HttpStatus.OK);
+            else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 }

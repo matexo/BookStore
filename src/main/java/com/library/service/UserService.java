@@ -36,6 +36,7 @@ public class UserService {
         newUser.setToken(Token.generateToken());
         newUser.setActivationTimeStamp(new Timestamp(DataUtil.currentTimeInMillis));
         newUser.setActivated(false);
+        newUser.setApiKey(null);
         Role role = new Role();
         role.setRole("ROLE_USER");
         role.setUser(newUser);
@@ -66,6 +67,39 @@ public class UserService {
             }
         }
         return false;
+    }
+
+    public Optional<User> loginUser(String login , String password ) {
+        User user = userRepository.findOne(QUser.user.username.eq(login)
+                .and(QUser.user.password.eq(password))
+                .and(QUser.user.activated.eq(true)));
+        if (user != null)
+            {
+            user.setApiKey(Token.generateToken());
+            userRepository.save(user);
+            }
+        return Optional.of(user);
+    }
+
+    public Optional<User> logout(String apiKey)
+    {
+        if(apiKey == null) return Optional.of(null);
+        User user = userRepository.findOne(QUser.user.apiKey.eq(apiKey));
+        if(user != null)
+        {
+            user.setApiKey(null);
+            userRepository.save(user);
+        }
+        return Optional.of(user);
+    }
+
+    public String getRole(String apiKey)
+    {
+        if(apiKey == null) return "ROLE_ANO";
+        User user = userRepository.findOne(QUser.user.apiKey.eq(apiKey));
+        if(user != null)
+            return user.getRole().getRole();
+        else return "ROLE_ANO";
     }
 
     //do testow

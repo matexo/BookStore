@@ -3,13 +3,11 @@ package com.library.rest;
 import com.library.domain.CustomerMessage;
 import com.library.repository.interfaces.CustomerMessageRepository;
 import com.library.service.CustomerMessageService;
+import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,11 +21,15 @@ public class CustomerMessageController {
     @Autowired
     private CustomerMessageService customerMessageService;
 
-    //weryfikacja admina
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "" , method = RequestMethod.GET)
-    public List<CustomerMessage> getAllCustomerMessage()
+    public ResponseEntity<List<CustomerMessage>> getAllCustomerMessage(@RequestHeader("api-key") String apiKey)
     {
-        return customerMessageService.getAllCustomerMessage();
+        if(userService.getRole(apiKey).equals("ROLE_ADMIN"))
+            return new ResponseEntity<>(customerMessageService.getAllCustomerMessage(),HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @RequestMapping(value = "" , method = RequestMethod.POST)

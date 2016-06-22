@@ -18,7 +18,6 @@ public class ViewController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String mainView() {
-        log.info("testestest");
         return "home";
     }
 

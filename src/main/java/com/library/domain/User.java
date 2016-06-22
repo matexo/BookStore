@@ -1,5 +1,6 @@
 package com.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,13 +25,14 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$|(anonymousUser)")
+    @Pattern(regexp = "^[a-z0-9]*$")
     @Size(min = 1, max = 50)
     @Column(length = 50, unique = true, nullable = false)
     private String username;
 
     @NotNull
     @Size(min = 6, max = 60)
+    @JsonIgnore
     private String password;
 
     @NotNull
@@ -43,8 +45,6 @@ public class User implements Serializable {
     @Column(nullable = false)
     private boolean activated = false;
 
-    @NotNull
-    @Column(nullable = false)
     private String apiKey;
 
     public String getApiKey() {
