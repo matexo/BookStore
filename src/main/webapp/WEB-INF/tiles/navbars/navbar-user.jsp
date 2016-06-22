@@ -52,7 +52,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href=<c:url value="/userForm"/>>
-                            <span class="glyphicon glyphicon-plus"></span> Nowe konto
+                            <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
                     </li>
                     <li>

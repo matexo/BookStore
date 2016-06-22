@@ -79,6 +79,10 @@ dd {
     min-width: 550px;
 }
 
+.list-group-item {
+    padding: 0;
+}
+
 .list-group-item:last-child,
 .list-group-item:first-child {
     border-radius: 0;

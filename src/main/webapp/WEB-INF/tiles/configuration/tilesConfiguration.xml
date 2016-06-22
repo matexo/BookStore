@@ -5,7 +5,7 @@
 <tiles-definitions>
     <definition name="base" template="/WEB-INF/tiles/layouts/base.jsp">
         <put-attribute name="title" value="" />
-        <put-attribute name="menu" value="/WEB-INF/tiles/menus/menu.jsp" />
+        <put-attribute name="navbar" value="/WEB-INF/tiles/navbars/navbar-user.jsp" />
         <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
         <put-attribute name="content3" value="" />
@@ -15,14 +15,20 @@
 
     <definition name="home" extends="base">
         <put-attribute name="title" value="Embik" />
-        <put-attribute name="content1" value="/WEB-INF/tiles/menus/menu.jsp" />
+        <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
     </definition>
 
     <definition name="products" extends="base">
-        <put-attribute name="title" value="Produkty" />
-        <put-attribute name="content1" value="/WEB-INF/tiles/menus/menu.jsp" />
+        <put-attribute name="title" value="Embik | Produkty" />
+        <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
     </definition>
 
+    <definition name="adminMenu" extends="base">
+        <put-attribute name="title" value="Panel Administratora" />
+        <put-attribute name="navbar" value="/WEB-INF/tiles/navbars/navbar-admin.jsp" />
+        <put-attribute name="content1" value="" />
+        <put-attribute name="content2" value="" />
+    </definition>
 </tiles-definitions>
