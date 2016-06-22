@@ -49,30 +49,29 @@
                     </li>
                 </ul>
                 <hr class="visible-xs divider">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
+                <ul class="nav navbar-nav navbar-right" ng-controller="SessionController as session">
+                    <li ng-hide={{session.loggedIn}}>
                         <a href=<c:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="session.login()" ng-hide={{session.loggedIn}}>
                         <a href=<c:url value="/login"/>>
                             <span class="glyphicon glyphicon-log-in"></span> Zaloguj
                         </a>
                     </li>
-                    <li>
+                    <li ng-show={{session.loggedIn}}>
                         <a href=<c:url value="/user/orders"/>>
                             <span class="glyphicon glyphicon-eye-open"></span> Moje zamówienia
                         </a>
                     </li>
-                    <li>
+                    <li ng-show={{session.loggedIn}}>
                         <a href=<c:url value="/admin"/>>
                             <span class="glyphicon glyphicon-cog"></span> Panel administratora
                         </a>
                     </li>
-                    <c:url var="logoutUrl" value="/logout"/>
-                    <li>
-                        <a href="<c:url value="/logout"/>">
+                    <li ng-click="session.logout()" ng-show={{session.loggedIn}}>
+                        <a href=<c:url value="/logout"/>>
                             <span class="glyphicon glyphicon-log-out"></span> Wyloguj
                         </a>
                     </li>

@@ -23,6 +23,7 @@
 <script src="libraries/jquery/jquery.min.js"></script>
 <script src="libraries/bootstrap/js/bootstrap.min.js"></script>
 <script src="libraries/angular/angular.min.js"></script>
+<script src="libraries/angular/ngStorage.min.js"></script>
 <script src="scripts/script.js"></script>
 
 </body>
