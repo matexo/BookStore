@@ -13,10 +13,12 @@ import javax.validation.constraints.Size;
 @Table
 public class BookCategory {
     @Id
+    @NotNull
+    @Size(min = 3 , max = 5)
     private String bookCategoryId;
 
     @NotNull
-    @Size(min = 3 , max = 20)
+    @Size(min = 3 , max = 40)
     private String bookCategory;
 
     public String getBookCategory() {

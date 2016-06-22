@@ -36,9 +36,9 @@
                            aria-expanded="false">
                             <span class="glyphicon glyphicon-list-alt"></span> Kategorie <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu list-group" ng-controller="BookCategoryController as bookCategory">
-                            <li ng-repeat="category in bookCategory.categories" class="list-group-item col-md-6">
-                                <a href="<c:url value="products/{{category}}"/>">{{category}}</a>
+                        <ul class="dropdown-menu list-group" ng-controller="BookCategoryController">
+                            <li ng-repeat="category in categories" class="list-group-item col-md-6">
+                                <a href="<c:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
                             </li>
                         </ul>
                     </li>
