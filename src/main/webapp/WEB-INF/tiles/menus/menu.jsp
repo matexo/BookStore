@@ -6,7 +6,8 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-collapse" aria-expanded="false">
                     <span class="sr-only">Menu</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -31,19 +32,18 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
                             <span class="glyphicon glyphicon-list-alt"></span> Kategorie <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu" ng-controller="BookCategoryController as categories">
-                            <li><a href="<c:url value="/products/Procesor"/>">{{ categories.category.name }}</a></li>
-                            <li><a href="<c:url value="/products/Procesor"/>">Procesor</a></li>
-                            <li><a href="<c:url value="/products/Karta%20graficzna"/>">Karta Graficzna</a></li>
-                            <li><a href="<c:url value="/products/Płyta%20głowna"/>">Płyta Głowna</a></li>
-                            <li><a href="<c:url value="/products/Zasilacz"/>">Zasilacz</a></li>
+                        <ul class="dropdown-menu list-group" ng-controller="BookCategoryController as bookCategory">
+                            <li ng-repeat="category in bookCategory.categories" class="list-group-item col-md-6">
+                                <a href="<c:url value="products/{{category}}"/>">{{category}}</a>
+                            </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="<c:url value="/checkOrder"/>">
+                        <a href="<c:url value="/order/status"/>">
                             <span class="glyphicon glyphicon-check"></span> Stan zamowienia
                         </a>
                     </li>
@@ -51,7 +51,7 @@
                 <hr class="visible-xs divider">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href=<c:url value="/user"/>>
+                        <a href=<c:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-plus"></span> Nowe konto
                         </a>
                     </li>
@@ -61,12 +61,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href=<c:url value="/user/menu/"/>>
+                        <a href=<c:url value="/user/orders"/>>
                             <span class="glyphicon glyphicon-eye-open"></span> Moje zamówienia
                         </a>
                     </li>
                     <li>
-                        <a href=<c:url value="/admin/"/>>
+                        <a href=<c:url value="/admin"/>>
                             <span class="glyphicon glyphicon-cog"></span> Panel administratora
                         </a>
                     </li>

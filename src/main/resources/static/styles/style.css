@@ -15,7 +15,9 @@ div.jumbotron {
     color: green;
 }
 
-body { padding-bottom: 70px; }
+body {
+    padding-bottom: 70px;
+}
 
 p {
     font-size: 15px;
@@ -27,7 +29,7 @@ img {
     margin: 10px;
 }
 
-.form-inline .form-group{
+.form-inline .form-group {
     padding: 10px;
     margin: 10px;
 }
@@ -46,7 +48,6 @@ input {
 dd {
     word-wrap: break-word;
 }
-
 
 .thumbnail {
     margin: 10px;
@@ -70,4 +71,19 @@ dd {
     padding: 30px;
     margin: 20px;
     border-radius: 30px;
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+    min-width: 550px;
+}
+
+.list-group-item:last-child,
+.list-group-item:first-child {
+    border-radius: 0;
+}
+
+.dropdown-menu > li > a:hover {
+    background: none;
 }
