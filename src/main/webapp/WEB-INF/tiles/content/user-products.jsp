@@ -1,88 +1,55 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if test="${not empty activationOK}">
-    <div class="container">
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <p class="text-center">${activationOK}</p>
-            </div>
-        </div>
-    </div>
-</c:if>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div class="container">
-    <div class="panel panel-success">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <p class="text-center">Nasze produkty ${p.name }</p>
+            <h3 class="text-center"><strong>Produkty</strong></h3>
         </div>
 
-        <div class="row" ng-controller="ProductsController">
-            <div class="col-sm-4 col-md-4" ng-repeat="book in books">
-                <div class="thumbnail">
-                    <img src="">
-                    <div class="caption">
-                        <div class="container">
-                            <h3></h3>
-                            <p>Autor: {{book.author}}</p>
-                            <p>Kategoria:</p>
-                            <p>Cena:</p>
+        <div class="row" ng-controller="BooksController">
+            <div class="col-md-3">
+                <div class="category-chooser">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Wyszukaj..." ng-model="search">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" disabled="disabled">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
                         </div>
                     </div>
-                    <button ng-click="products.addToCart()">Dodaj do koszyka</button>
+                    <h5><strong>Kategorie:</strong></h5>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="category in categories">
+                            <span>{{category.bookCategory}}</span></li>
+                    </ul>
                 </div>
             </div>
-
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                   aria-expanded="false">
-                    <span class="glyphicon glyphicon-list-alt"></span> Kategorie <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu list-group" ng-controller="BookCategoryController">
-                    <li ng-repeat="category in categories" class="list-group-item col-md-6">
-                        <a href="<spring:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
-                    </li>
-                </ul>
-            </li>
-            <%--<c:forEach items="${list}" var="product">--%>
-
-                <%--<div class="col-sm-4 col-md-4">--%>
-                    <%--<div class="thumbnail">--%>
-
-                        <%--<img--%>
-                                <%--src="<c:url value="/resources/images/products/${product.productId}.jpg"/>"--%>
-                                <%--alt="${product.name}">--%>
-                        <%--<div class="caption">--%>
-                            <%--<div class="container">--%>
-                                <%--<h3>${product.name}</h3>--%>
-                                <%--<p>Producent: ${product.manufacturer }</p>--%>
-                                <%--<p>Kategoria: ${product.category }</p>--%>
-                                <%--<p>Cena: ${product.unitPrice } PLN</p>--%>
-
-
-                                <%--<c:choose>--%>
-                                    <%--<c:when test="${product.quantity < 1 }">--%>
-                                        <%--<button class="btn btn-danger"--%>
-                                                <%--ng-click="">Produkt niedostępny</button>--%>
-                                    <%--</c:when>--%>
-                                    <%--<c:when test="${product.quantity >= 1 }">--%>
-                                        <%--<button class="btn btn-success"--%>
-                                                <%--ng-click="addToCart('${product.productId }')">Dodaj do--%>
-                                            <%--koszyka</button>--%>
-                                    <%--</c:when>--%>
-                                <%--</c:choose>--%>
-                                <%--<a--%>
-                                        <%--href="<c:url value="/products/showMore/${product.productId}"/>"--%>
-                                        <%--class="btn btn-default" role="button">Pokaż więcej</a>--%>
-                                <%--</p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-
-
-
-            <%--</c:forEach>--%>
+            <div class="col-md-9">
+                <div class="col-xs-12 col-sm-2 col-md-4 col-lg-4"
+                     ng-repeat="book in books | orderBy:'-bookId' | filter: {'title': search}">
+                    <div class="thumbnail">
+                        <img class="img-thumbnail" src="<spring:url value="images/products/{{book.title}}.jpg"/>"/>
+                        <div class="caption">
+                            <div class="container-fluid">
+                                <h5><strong>
+                                    <a href="<spring:url value="products/info/{{book.bookId}}"/>">{{book.title}}</a>
+                                </strong></h5>
+                                <h6>{{book.author}}</h6>
+                                <h6 class="text-muted">{{book.bookCategory[0].bookCategory}}</h6>
+                                <h4 class="text-danger">{{book.unitPrice | currency:"PLN "}}</h4>
+                                <button class="btn btn-default btn-block margin-top-20" disabled="disabled"
+                                        ng-show="{{book.quantity}} < 1">
+                                    Produkt niedostępny
+                                </button>
+                                <button class="btn btn-success btn-block margin-top-20" ng-show="{{book.quantity}} > 0">
+                                    Dodaj do koszyka
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>

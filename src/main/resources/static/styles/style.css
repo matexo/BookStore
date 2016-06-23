@@ -110,3 +110,21 @@ li:hover {
 .margin-top-20 {
     margin-top: 20px !important;
 }
+
+.list-group-item {
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.list-group-item:first-child,
+.list-group-item:last-child {
+    border-radius: 0;
+}
+
+.category-chooser {
+    padding: 10px;
+}
+
+.category-chooser h5 {
+    margin: 20px 10px 10px;
+}

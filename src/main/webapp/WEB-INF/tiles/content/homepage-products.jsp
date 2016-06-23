@@ -8,7 +8,7 @@
         </div>
 
         <div class="row" ng-controller="BooksController">
-            <div class="col-xs-3 col-md-3" ng-repeat="book in books | orderBy:'-bookId'">
+            <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" ng-repeat="book in books | orderBy:'-bookId' | limitTo: 12">
                 <div class="thumbnail">
                     <img class="img-thumbnail" src="<spring:url value="images/products/{{book.title}}.jpg"/>"/>
                     <div class="caption">
@@ -16,10 +16,10 @@
                             <h5><strong>
                                 <a href="<spring:url value="products/info/{{book.bookId}}"/>">{{book.title}}</a>
                             </strong></h5>
-                            <h6><em>{{book.author}}</em></h6>
-                            <h6>Kategoria</h6>
+                            <h6>{{book.author}}</h6>
+                            <h6 class="text-muted">{{book.bookCategory[0].bookCategory}}</h6>
                             <h4 class="text-danger">{{book.unitPrice | currency:"PLN "}}</h4>
-                            <button class="btn btn-danger btn-block margin-top-20" disabled="disabled"
+                            <button class="btn btn-default btn-block margin-top-20" disabled="disabled"
                                     ng-show="{{book.quantity}} < 1">
                                 Produkt niedostępny
                             </button>
