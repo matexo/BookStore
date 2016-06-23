@@ -11,7 +11,7 @@
             localStorage.setItem('loggedIn', false);
         };
     });
-
+    
     app.controller('BooksController', function ($scope, $http) {
         $http.get('/api/book/all').success(function (result) {
             $scope.books = result;
@@ -20,6 +20,7 @@
 
         $http.get('/api/book/category/all').success(function (result) {
             $scope.categories = result;
+            console.log(result);
         });
     });
 

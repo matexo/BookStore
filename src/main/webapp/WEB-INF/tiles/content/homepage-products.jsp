@@ -8,11 +8,11 @@
         </div>
 
         <div class="row" ng-controller="BooksController">
-            <div class="col-xs-12 col-md-4" ng-repeat="book in books">
+            <div class="col-xs-3 col-md-3" ng-repeat="book in books">
                 <div class="thumbnail">
-                    <img src="<spring:url value="images/products/{{book.bookId}}.jpg"/>"/>
+                    <img src="<spring:url value="images/products/{{book.title}}.jpg"/>"/>
                     <div class="caption">
-                        <div class="container">
+                        <div class="container-fluid">
                             <h3>{{book.title}}</h3>
                             <p>Autor: {{book.author}}</p>
                             <p>Cena: {{book.unitPrice}} PLN</p>
