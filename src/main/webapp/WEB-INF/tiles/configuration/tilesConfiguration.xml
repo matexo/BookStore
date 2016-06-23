@@ -20,7 +20,7 @@
 
     <definition name="products" extends="base">
         <put-attribute name="title" value="Embik | Produkty" />
-        <put-attribute name="content1" value="" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/products.jsp" />
         <put-attribute name="content2" value="" />
     </definition>
 
@@ -39,5 +39,10 @@
     <definition name="userForm" extends="base">
         <put-attribute name="title" value="Embik | Rejestracja" />
         <put-attribute name="content1" value="/WEB-INF/tiles/layouts/user-register.jsp" />
+    </definition>
+
+    <definition name="orderStatus" extends="base">
+        <put-attribute name="title" value="Embik | Sprawdzenie zamówienia" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/user-order-check.jsp" />
     </definition>
 </tiles-definitions>
