@@ -18,16 +18,23 @@
                             </button>
                         </div>
                     </div>
+                    <div ng-show="filteredCategory">
+                        <h5 class="text-info">Wybrana kategoria:</h5>
+                        <h5 class="category"><strong>{{filteredCategory.bookCategory}}<span class="delete-button" ng-click="clearCategory()">X</span></strong></h5>
+                    </div>
+
                     <h5><strong>Kategorie:</strong></h5>
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="category in categories">
+                        <li class="list-group-item" ng-repeat="category in categories"
+                            ng-click="setFilterCategory(category)">
                             <span>{{category.bookCategory}}</span></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="col-xs-12 col-sm-2 col-md-4 col-lg-4"
-                     ng-repeat="book in books | orderBy:'-bookId' | filter: {'title': search}">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4"
+                     ng-repeat="book in books | orderBy:'-bookId' | filter: {'title': search}"
+                     ng-show="filterByCategory(book.bookCategory,filteredCategory)">
                     <div class="thumbnail">
                         <img class="img-thumbnail" src="<spring:url value="images/products/{{book.title}}.jpg"/>"/>
                         <div class="caption">

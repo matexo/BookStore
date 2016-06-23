@@ -128,3 +128,21 @@ li:hover {
 .category-chooser h5 {
     margin: 20px 10px 10px;
 }
+
+.category-chooser .category{
+    margin-top: 0;
+}
+
+.delete-button {
+    display: inline-block;
+    margin: 0 0 10px 5px;
+    font-size: 14px;
+    padding: 3px;
+    cursor: pointer;
+    color: #888;
+    font-weight: bold;
+}
+
+.delete-button:hover {
+    color: #444;
+}

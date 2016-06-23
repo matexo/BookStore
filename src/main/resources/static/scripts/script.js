@@ -11,8 +11,27 @@
             localStorage.setItem('loggedIn', false);
         };
     });
-    
+
     app.controller('BooksController', function ($scope, $http) {
+        $scope.setFilterCategory = function (category) {
+            $scope.filteredCategory = category;
+        };
+
+        $scope.filterByCategory = function (categoryArray, category) {
+            if (category == null)
+                return true;
+            var i;
+            for (i = 0; i < categoryArray.length; i++) {
+                if (category['bookCategory'] == categoryArray[i]['bookCategory'])
+                    return true;
+            }
+            return false;
+        };
+
+        $scope.clearCategory = function(){
+            $scope.filteredCategory = null;
+        };
+
         $http.get('/api/book/all').success(function (result) {
             $scope.books = result;
             console.log(result);
