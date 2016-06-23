@@ -20,7 +20,7 @@
 
     <definition name="products" extends="base">
         <put-attribute name="title" value="Embik | Produkty" />
-        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/products.jsp" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/layouts/user-products.jsp" />
         <put-attribute name="content2" value="" />
     </definition>
 

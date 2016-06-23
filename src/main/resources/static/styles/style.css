@@ -6,11 +6,6 @@ li:hover {
     background-color: rgba(143, 147, 141, 0.82);
 }
 
-#footer {
-    height: 60px;
-    background-color: #f5f5f5;
-}
-
 p {
     font-size: 15px;
     word-wrap: break-word;
