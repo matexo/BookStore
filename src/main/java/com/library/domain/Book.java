@@ -26,7 +26,7 @@ public class Book implements Serializable {
     @Column(name="book_id")
     private Long bookId;
 
-    @Size(min = 1, max = 30)
+    @Size(min = 1, max = 60)
     @NotNull
     private String title;
 
