@@ -13,6 +13,7 @@ import java.io.Serializable;
  * Created by Matexo on 2016-06-12.
  */
 @Entity
+@Table(name = "customer_info")
 public class CustomerInfo implements Serializable {
     private static final long serialVersionUID = -3771448259691684792L;
 

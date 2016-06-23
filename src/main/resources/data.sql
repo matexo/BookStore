@@ -1,3 +1,6 @@
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Inpost' , TRUE ,'Wysylka Inpost' , 1 , 100000 , 'Wysylka Inpost' , 10 , 1);
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Kurier' , TRUE ,'Wysylka Kurier' , 1 , 100000 , 'Wysylka Kurier' , 15 , 1);
+INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Poczta' , TRUE ,'Wysylka Poczta' , 1 , 100000 , 'Wysylka Poczta' , 12 , 1);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Wiedźmiński kodeks stawia tę sprawę w sposób jednoznaczny: wiedźminowi smoka zabijać się nie godzi. To gatunek zagrożony wymarciem. Aczkolwiek w powszechnej opinii to gad najbardziej wredny. Na oszluzgi, widłogony i latawce kodeks polować przyzwala. Ale na smoki – nie. Wiedźmin Geralt przyłącza się jednak do zorganizowanej przez króla Niedamira wyprawy na smoka, który skrył się w jaskiniach...',111,100,'Miecz przeznaczenia',120.5 , 2015);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Andrzej Sapkowski, arcymistrz światowej fantasy, zaprasza do swojego Neverlandu i przedstawia uwielbianą przez czytelników i wychwalaną przez krytykę wiedźmińską sagę! "Tako rzecze Ithlinne, elfia wieszczka i uzdrowicielka: Drżyjcie, albowiem nadchodzi Niszczyciel Narodów. Stratują waszą ziemię i sznurem ją podzielą. Miasta wasze zostaną zburzone i pozbawione mieszkańców. Nietoperz i kruk w...',111,90 ,'Krew Elfów',110 , 2015);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz. Białowłosego przywiodło do miasta królewskie orędzie: trzy tysiące orenów nagrody za odczarowanie nękającej mieszkańców Wyzimy strzygi. Takie czasy nastały. Dawniej po lasach jeno wilki wyły, teraz...',111,75,'Ostatnie Życzenie',85 , 2015);
@@ -59,4 +62,8 @@ INSERT INTO book_category VALUES ('SZT', 'Sztuka');
 INSERT INTO book_category VALUES ('THR', 'Thriller, horror');
 INSERT INTO book_category VALUES ('TUR', 'Turystyka i podróże');
 INSERT INTO book_category VALUES ('ZDR', 'Zdrowie, rodzina');
+
+INSERT INTO adress(city,house_number,street_name,zip_code) VALUES ('TESTC' , 1 , 'TESTN' , 11-111);
+INSERT INTO customer_info(adress_id , email , name , phone_number , surname)
+VALUES( 1 , 'test@test.pl' , 'TESTI' , 123456789 , 'TESTN')
 
