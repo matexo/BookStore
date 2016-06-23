@@ -1,6 +1,9 @@
+-- sposob wysylki
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Inpost' , TRUE ,'Wysylka Inpost' , 1 , 100000 , 'Wysylka Inpost' , 10 , 1);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Kurier' , TRUE ,'Wysylka Kurier' , 1 , 100000 , 'Wysylka Kurier' , 15 , 1);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Wysylka Poczta' , TRUE ,'Wysylka Poczta' , 1 , 100000 , 'Wysylka Poczta' , 12 , 1);
+
+-- ksiazki
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Wiedźmiński kodeks stawia tę sprawę w sposób jednoznaczny: wiedźminowi smoka zabijać się nie godzi. To gatunek zagrożony wymarciem. Aczkolwiek w powszechnej opinii to gad najbardziej wredny. Na oszluzgi, widłogony i latawce kodeks polować przyzwala. Ale na smoki – nie. Wiedźmin Geralt przyłącza się jednak do zorganizowanej przez króla Niedamira wyprawy na smoka, który skrył się w jaskiniach...',111,100,'Miecz przeznaczenia',120.5 , 2015);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Andrzej Sapkowski, arcymistrz światowej fantasy, zaprasza do swojego Neverlandu i przedstawia uwielbianą przez czytelników i wychwalaną przez krytykę wiedźmińską sagę! "Tako rzecze Ithlinne, elfia wieszczka i uzdrowicielka: Drżyjcie, albowiem nadchodzi Niszczyciel Narodów. Stratują waszą ziemię i sznurem ją podzielą. Miasta wasze zostaną zburzone i pozbawione mieszkańców. Nietoperz i kruk w...',111,90 ,'Krew Elfów',110 , 2015);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Andrzej Sapkowski',FALSE,'Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz. Białowłosego przywiodło do miasta królewskie orędzie: trzy tysiące orenów nagrody za odczarowanie nękającej mieszkańców Wyzimy strzygi. Takie czasy nastały. Dawniej po lasach jeno wilki wyły, teraz...',111,75,'Ostatnie Życzenie',85 , 2015);
@@ -28,6 +31,7 @@ INSERT INTO book(author, deleted, description, pages, quantity, title, unit_pric
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Oliver Sacks',FALSE,'Pacjenci z problemami natury neurologicznej - napisał kiedyś Oliver Sacks - to podróżnicy po niezwykłych krainach". Zbiór opowiadań „Antropolog na Marsie” przedstawia portrety siedmiu takich podróżników. Choć zranieni i okaleczeni, potrafią znaleźć w sobie siłę, która zmienia ich tożsamość i życie, a tym samym ułatwia przetrwanie w nowych warunkach. Świata tych ludzi nie da się poznać na...',392,67,'Antropolog na Marsie',45.5 , 1990);
 INSERT INTO book(author, deleted, description, pages, quantity, title, unit_price, year) VALUES ('Platon',FALSE,'W świecie idei Platona jedną z najistotniejszych była idea państwa doskonałego, rządzonego przez mędrców- filozofów, realizującego takie wartości jak: Sprawiedliwość, Prawda, Dobro i Piękno. Warunkiem realizacji tych szczytnych celów było odrzucenie demokracji. Cóż bowiem miała i ma do zaoferowania demokracja, która zabiła tak prawego i uczciwego człowieka jak Sokrates, która podporządkowuje -...',341,20,'Państwo', 59.9 , 2006);
 
+-- kategorie ksiazek
 INSERT INTO book_category VALUES ('ALB', 'Albumy');
 INSERT INTO book_category VALUES ('AUD', 'Audiobooki');
 INSERT INTO book_category VALUES ('BIO', 'Biografie');
@@ -63,6 +67,7 @@ INSERT INTO book_category VALUES ('THR', 'Thriller, horror');
 INSERT INTO book_category VALUES ('TUR', 'Turystyka i podróże');
 INSERT INTO book_category VALUES ('ZDR', 'Zdrowie, rodzina');
 
+-- ksiazki do kategorii
 INSERT INTO book_to_category(book, category) VALUES (4, 'FAN');
 INSERT INTO book_to_category(book, category) VALUES (5, 'FAN');
 INSERT INTO book_to_category(book, category) VALUES (6, 'FAN');
@@ -93,10 +98,28 @@ INSERT INTO book_to_category(book, category) VALUES (14, 'FAN');
 INSERT INTO book_to_category(book, category) VALUES (29, 'FAK');
 INSERT INTO book_to_category(book, category) VALUES (12, 'LIT');
 
+-- rola
 INSERT INTO role(user_id , role) VALUES (null , 'USER_ROLE');
 INSERT INTO role(user_id , role) VALUES (null , 'ADMIN_ROLE');
 
-INSERT INTO adress(city,house_number,street_name,zip_code) VALUES ('TESTC' , 1 , 'TESTN' , 11-111);
-INSERT INTO customer_info(adress_id , email , name , phone_number , surname)
-VALUES( 1 , 'test@test.pl' , 'TESTI' , 123456789 , 'TESTN')
+-- admin + user
+INSERT INTO users(id , role_id , activated , email , password , token , username , acv_time_stamp)
+VALUES (1 , 1 , FALSE , 'admin@test.pl' , 'admin' , 'admin' , 'admin' , to_date('2014/04/25', 'YYYY/MM/DD'));
+INSERT INTO users(id , role_id , activated , email , password , token , username , acv_time_stamp)
+VALUES (2 , 1 , FALSE , 'user@test.pl' , 'user' , 'user' , 'user' , to_date('2014/04/25', 'YYYY/MM/DD'));
 
+UPDATE role SET user_id = 2 WHERE id = 1;
+UPDATE role SET user_id = 1 WHERE id = 2;
+
+-- customer info
+INSERT INTO adress(city,house_number,street_name,zip_code) VALUES ('DALESZYCE' , 85 , 'SIENKIEWICZA' , '26-021');
+INSERT INTO customer_info(adress_id , email , name , phone_number , surname)
+VALUES( 1 , 'user@test.pl' , 'Piotr' , 123456789 , 'Pleban');
+
+-- oceny ksiazek
+INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values ('Bardzo dobra książka' , 'Mól książkowy' , current_date , 5 , 1);
+INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values ('Trochę nudna' , 'anonim' , current_date , 2 , 2);
+INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values ('Końcówka do przewidzenia...' , 'Andrzej' , current_date , 3 , 10);
+
+-- wiadomosc
+INSERT INTO customer_message(customer_email , date , message) values ('user@test.pl' , current_date , 'Zamówienie gotowe do odbioru');
