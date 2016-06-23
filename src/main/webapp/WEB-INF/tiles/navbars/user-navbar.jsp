@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <nav class="navbar navbar-default">
     <div class="container">
@@ -13,7 +13,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href=<c:url value="/"/>>
+                <a class="navbar-brand" href=<spring:url value="/"/>>
                     <span class="glyphicon glyphicon-superscript"></span>
                 </a>
             </div>
@@ -22,12 +22,12 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href=<c:url value="/"/>>
+                        <a href=<spring:url value="/"/>>
                             <span class="glyphicon glyphicon-home"></span> Strona głowna
                         </a>
                     </li>
                     <li>
-                        <a href=<c:url value="/products"/>>
+                        <a href=<spring:url value="/products"/>>
                             <span class="glyphicon glyphicon-gift"></span> Produkty
                         </a>
                     </li>
@@ -38,12 +38,12 @@
                         </a>
                         <ul class="dropdown-menu list-group" ng-controller="BookCategoryController">
                             <li ng-repeat="category in categories" class="list-group-item col-md-6">
-                                <a href="<c:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
+                                <a href="<spring:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="<c:url value="/order/status"/>">
+                        <a href="<spring:url value="/order/status"/>">
                             <span class="glyphicon glyphicon-check"></span> Stan zamowienia
                         </a>
                     </li>
@@ -51,32 +51,32 @@
                 <hr class="visible-xs divider">
                 <ul class="nav navbar-nav navbar-right" ng-controller="SessionController as session">
                     <li ng-hide={{session.loggedIn}}>
-                        <a href=<c:url value="/userForm"/>>
+                        <a href=<spring:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
                     </li>
                     <li ng-click="session.login()" ng-hide={{session.loggedIn}}>
-                        <a href=<c:url value="/login"/>>
+                        <a href=<spring:url value="/login"/>>
                             <span class="glyphicon glyphicon-log-in"></span> Zaloguj
                         </a>
                     </li>
                     <li ng-show={{session.loggedIn}}>
-                        <a href=<c:url value="/user/orders"/>>
+                        <a href=<spring:url value="/user/orders"/>>
                             <span class="glyphicon glyphicon-eye-open"></span> Moje zamówienia
                         </a>
                     </li>
                     <li ng-show={{session.loggedIn}}>
-                        <a href=<c:url value="/admin"/>>
+                        <a href=<spring:url value="/admin"/>>
                             <span class="glyphicon glyphicon-cog"></span> Panel administratora
                         </a>
                     </li>
                     <li ng-click="session.logout()" ng-show={{session.loggedIn}}>
-                        <a href=<c:url value="/logout"/>>
+                        <a href=<spring:url value="/logout"/>>
                             <span class="glyphicon glyphicon-log-out"></span> Wyloguj
                         </a>
                     </li>
                     <li>
-                        <a href="<c:url value="/cart"/>">
+                        <a href="<spring:url value="/cart"/>">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Koszyk
                         </a>
                     </li>
