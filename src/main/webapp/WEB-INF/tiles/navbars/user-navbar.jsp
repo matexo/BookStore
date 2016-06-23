@@ -31,17 +31,6 @@
                             <span class="glyphicon glyphicon-gift"></span> Produkty
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">
-                            <span class="glyphicon glyphicon-list-alt"></span> Kategorie <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu list-group" ng-controller="BookCategoryController">
-                            <li ng-repeat="category in categories" class="list-group-item col-md-6">
-                                <a href="<spring:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
-                            </li>
-                        </ul>
-                    </li>
                     <li>
                         <a href="<spring:url value="/order/status"/>">
                             <span class="glyphicon glyphicon-check"></span> Stan zamowienia
@@ -49,28 +38,28 @@
                     </li>
                 </ul>
                 <hr class="visible-xs divider">
-                <ul class="nav navbar-nav navbar-right" ng-controller="SessionController as session">
-                    <li ng-hide={{session.loggedIn}}>
+                <ul class="nav navbar-nav navbar-right" ng-controller="SessionController">
+                    <li ng-hide={{loggedIn}>
                         <a href=<spring:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
                     </li>
-                    <li ng-click="session.login()" ng-hide={{session.loggedIn}}>
+                    <li ng-click="login()" ng-hide={{loggedIn}}>
                         <a href=<spring:url value="/login"/>>
                             <span class="glyphicon glyphicon-log-in"></span> Zaloguj
                         </a>
                     </li>
-                    <li ng-show={{session.loggedIn}}>
+                    <li ng-show={{loggedIn}}>
                         <a href=<spring:url value="/user/orders"/>>
                             <span class="glyphicon glyphicon-eye-open"></span> Moje zamówienia
                         </a>
                     </li>
-                    <li ng-show={{session.loggedIn}}>
+                    <li ng-show={{loggedIn}}>
                         <a href=<spring:url value="/admin"/>>
                             <span class="glyphicon glyphicon-cog"></span> Panel administratora
                         </a>
                     </li>
-                    <li ng-click="session.logout()" ng-show={{session.loggedIn}}>
+                    <li ng-click="logout()" ng-show={{loggedIn}}>
                         <a href=<spring:url value="/logout"/>>
                             <span class="glyphicon glyphicon-log-out"></span> Wyloguj
                         </a>

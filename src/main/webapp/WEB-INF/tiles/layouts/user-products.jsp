@@ -30,6 +30,18 @@
                     <button ng-click="products.addToCart()">Dodaj do koszyka</button>
                 </div>
             </div>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <span class="glyphicon glyphicon-list-alt"></span> Kategorie <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu list-group" ng-controller="BookCategoryController">
+                    <li ng-repeat="category in categories" class="list-group-item col-md-6">
+                        <a href="<spring:url value="products/{{category.bookCategory}}"/>">{{category.bookCategory}}</a>
+                    </li>
+                </ul>
+            </li>
             <%--<c:forEach items="${list}" var="product">--%>
 
                 <%--<div class="col-sm-4 col-md-4">--%>

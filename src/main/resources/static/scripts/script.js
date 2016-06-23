@@ -1,14 +1,13 @@
 (function () {
     var app = angular.module('bookStore', ['ngStorage']);
 
-    app.controller('SessionController', function () {
-        this.loggedIn = localStorage.getItem('loggedIn');
-
-        this.login = function () {
+    app.controller('SessionController', function ($scope) {
+        $scope.loggedIn = localStorage.getItem('loggedIn');
+        $scope.login = function () {
             localStorage.setItem('loggedIn', true);
         };
 
-        this.logout = function () {
+        $scope.logout = function () {
             localStorage.setItem('loggedIn', false);
         };
     });
@@ -31,6 +30,6 @@
     });
 
     app.controller('CartController', function ($scope, $http) {
-        
+
     })
 })();
