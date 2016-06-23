@@ -21,11 +21,6 @@ p {
     word-wrap: break-word;
 }
 
-img {
-    padding: 10px;
-    margin: 10px;
-}
-
 dd {
     word-wrap: break-word;
 }
@@ -74,13 +69,6 @@ li:hover {
     margin: 10px;
 }
 
-.thumbnail > img {
-    display: block;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .panel {
     margin: 5px;
 }
@@ -104,4 +92,21 @@ li:hover {
     margin: -20px 0 20px 0;
     width: 100%;
     padding: 0;
+}
+
+.thumbnail img {
+    display: block;
+    max-height: 350px;
+    min-height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.thumbnail {
+    height: 550px;
+}
+
+.margin-top-20 {
+    margin-top: 20px !important;
 }
