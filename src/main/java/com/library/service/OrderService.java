@@ -1,10 +1,8 @@
 package com.library.service;
 
+import com.google.common.collect.Lists;
 import com.library.domain.*;
-import com.library.repository.interfaces.BookRepository;
-import com.library.repository.interfaces.CartRepostitory;
-import com.library.repository.interfaces.CustomerInfoRepository;
-import com.library.repository.interfaces.CustomerOrderRepository;
+import com.library.repository.interfaces.*;
 import com.library.util.DataUtil;
 import com.library.util.Token;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +31,9 @@ public class OrderService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<CustomerOrder> getAllCustomerOrders() {
         return customerOrderRepository.findAll();
@@ -98,5 +99,19 @@ public class OrderService {
         newCart.setCartItems(cart.getCartItems());
         newCart.setTotalCost(cart.getTotalCost());
         return newCart;
+    }
+
+    public Optional<CustomerOrder> getCustomerOrder(String orderNumber)
+    {
+        return Optional.of(customerOrderRepository.findOne(QCustomerOrder.customerOrder.orderNumber.eq(orderNumber)));
+    }
+
+    public Optional<List<CustomerOrder>> getCustomerOrderForUser(String apiKey)
+    {
+        if(apiKey != null)
+        {
+        return Optional.of(Lists.newArrayList(customerOrderRepository.findAll(QCustomerOrder.customerOrder.user.apiKey.eq(apiKey))));
+        }
+        return Optional.of(null);
     }
 }

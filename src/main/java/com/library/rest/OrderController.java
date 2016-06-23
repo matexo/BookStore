@@ -25,7 +25,7 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "" , method = RequestMethod.GET)
+    @RequestMapping(value = "/all" , method = RequestMethod.GET)
     public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders(@RequestHeader("api-key") String apiKey)
     {
         if(userService.getRole(apiKey).equals("ROLE_ADMIN"))
@@ -33,6 +33,22 @@ public class OrderController {
            return new ResponseEntity<>(orderService.getAllCustomerOrders() , HttpStatus.OK);
         }
         else return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @RequestMapping(value = "/{orderNumber}" , method = RequestMethod.GET)
+    public ResponseEntity<CustomerOrder> getCustomerOrderForId(@PathVariable String orderNumber)
+    {
+    return orderService.getCustomerOrder(orderNumber)
+            .map(customerOrder -> new ResponseEntity<>(customerOrder,HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(value = "/user" , method = RequestMethod.GET)
+    public ResponseEntity<List<CustomerOrder>> getCustomerOrderForUser(@RequestHeader("api-key") String apiKey)
+    {
+        return orderService.getCustomerOrderForUser(apiKey)
+                .map(customerOrders -> new ResponseEntity<>(customerOrders,HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @RequestMapping(value = "" , method = RequestMethod.POST)
@@ -51,4 +67,6 @@ public class OrderController {
     {
         return new ResponseEntity<CustomerInfo>(orderService.test(),HttpStatus.OK);
     }
+
+
 }
