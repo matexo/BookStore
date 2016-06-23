@@ -1,5 +1,6 @@
 package com.library.rest;
 
+import com.library.domain.CustomerInfo;
 import com.library.domain.CustomerOrder;
 import com.library.domain.User;
 import com.library.service.OrderService;
@@ -40,7 +41,14 @@ public class OrderController {
         User user = null;
         if(apiKey != null)
             user = userService.getUserInfo(apiKey);
-        orderService.confirmOrder(customerOrder , user);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return orderService.confirmOrder(customerOrder , user)
+                .map(newCustomerOrder -> new ResponseEntity<>(newCustomerOrder , HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    @RequestMapping(value = "test" , method = RequestMethod.GET)
+    public ResponseEntity<CustomerInfo> test()
+    {
+        return new ResponseEntity<CustomerInfo>(orderService.test(),HttpStatus.OK);
     }
 }

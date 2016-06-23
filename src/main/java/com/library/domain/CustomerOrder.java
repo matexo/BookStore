@@ -66,7 +66,6 @@ public class CustomerOrder implements Serializable {
 
 
     public CustomerOrder() {
-        customerInfo = new CustomerInfo();
     }
 
     public Long getOrderId() {

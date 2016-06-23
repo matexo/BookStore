@@ -26,9 +26,9 @@ public class CartController {
     private BookService bookService;
 
     @RequestMapping(value = "/{cartId}" , method = RequestMethod.GET)
-    public ResponseEntity<Cart> getCart(@PathVariable String clientId)
+    public ResponseEntity<Cart> getCart(@PathVariable String cartId)
     {
-        Cart cart = cartService.getCart(clientId);
+        Cart cart = cartService.getCart(cartId);
         if(cart != null)
             return new ResponseEntity<>(cart, HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -43,10 +43,10 @@ public class CartController {
     @RequestMapping(value = "/book/{bookId}" ,method = RequestMethod.POST)
     public ResponseEntity addBookToCart(@PathVariable Long bookId , HttpServletRequest request)
     {
-        String clientId = request.getSession(true).getId();
-        Cart cart = cartService.getCart(clientId);
+        String cartId = request.getSession(true).getId();
+        Cart cart = cartService.getCart(cartId);
         if(cart == null)
-            cart = cartService.addNewCart(new Cart(clientId));
+            cart = cartService.addNewCart(new Cart(cartId));
         Book book = bookService.getBookById(bookId);
         if(book != null)
             {

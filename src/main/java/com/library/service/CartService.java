@@ -22,11 +22,9 @@ public class CartService {
         return cartRepostitory.save(cart);
     }
 
-    public Cart getCart(String clientId)
+    public Cart getCart(String cartId)
     {
-        if(cartRepostitory.exists(clientId))
-            return cartRepostitory.findOne(clientId);
-        else return null;
+        return cartRepostitory.findOne(cartId);
     }
 
     public String deleteCart(String clientId)

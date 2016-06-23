@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 @Entity
 public class Adress implements Serializable {
-    private static final long serialVersionUID = 3300861807960715497L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

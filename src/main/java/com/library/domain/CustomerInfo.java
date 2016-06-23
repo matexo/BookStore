@@ -15,8 +15,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "customer_info")
 public class CustomerInfo implements Serializable {
-    private static final long serialVersionUID = -3771448259691684792L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +30,7 @@ public class CustomerInfo implements Serializable {
     @Email
     private String email;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = javax.persistence.CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "adressId")
     @Valid
     private Adress adress;
@@ -89,8 +87,5 @@ public class CustomerInfo implements Serializable {
         this.adress = adress;
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
 
 }

@@ -74,6 +74,27 @@ public class CartItem implements Serializable {
         totalPrice = this.book.getUnitPrice().multiply(new BigDecimal(this.quantity));
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        CartItem cartItem = (CartItem) o;
+
+        if (quantity != cartItem.quantity) return false;
+        if (cartItemId != null ? !cartItemId.equals(cartItem.cartItemId) : cartItem.cartItemId != null) return false;
+        if (book != null ? !book.equals(cartItem.book) : cartItem.book != null) return false;
+        return totalPrice != null ? totalPrice.equals(cartItem.totalPrice) : cartItem.totalPrice == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cartItemId != null ? cartItemId.hashCode() : 0;
+        result = 31 * result + (book != null ? book.hashCode() : 0);
+        result = 31 * result + quantity;
+        result = 31 * result + (totalPrice != null ? totalPrice.hashCode() : 0);
+        return result;
+    }
 }
 

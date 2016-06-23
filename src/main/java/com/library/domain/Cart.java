@@ -24,7 +24,7 @@ public class Cart implements Serializable {
     @Id
     private String cartId;
 
-    @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER , cascade = CascadeType.MERGE)
     @JoinColumn(name = "cart_id")
     private Map<Long, CartItem> cartItems;
 
@@ -76,9 +76,18 @@ public class Cart implements Serializable {
         updateTotalCost();
     }
 
+    public void setTotalCost(BigDecimal totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public void setCartItems(Map<Long, CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
     public void updateTotalCost()
     {
         totalCost = new BigDecimal(0);
+
         for (CartItem cartItem : cartItems.values())
         {
             this.totalCost = this.totalCost.add(cartItem.getTotalPrice());
@@ -91,17 +100,6 @@ public class Cart implements Serializable {
 
     public void setCartId(String cartId) {
         this.cartId = cartId;
-    }
-
-    //TODO ZMIENIC NA COS FAJNIEJSZEGO
-    public void addShippmentCost(String shippingMethod)
-    {
-        if(shippingMethod.equals("Kurier"))
-            totalCost = totalCost.add(new BigDecimal(15));
-        else if(shippingMethod.equals("Poczta Polska"))
-            totalCost = totalCost.add(new BigDecimal(10));
-        else if(shippingMethod.equals("Inpost"))
-            totalCost = totalCost.add(new BigDecimal(8));
     }
 
 }

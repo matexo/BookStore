@@ -1,9 +1,7 @@
 package com.library.service;
 
-import com.library.domain.Cart;
-import com.library.domain.CustomerInfo;
-import com.library.domain.CustomerOrder;
-import com.library.domain.User;
+import com.library.domain.*;
+import com.library.repository.interfaces.BookRepository;
 import com.library.repository.interfaces.CartRepostitory;
 import com.library.repository.interfaces.CustomerInfoRepository;
 import com.library.repository.interfaces.CustomerOrderRepository;
@@ -15,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -32,42 +31,72 @@ public class OrderService {
     @Autowired
     private CustomerInfoRepository customerInfoRepository;
 
-    public List<CustomerOrder> getAllCustomerOrders()
-    {
+    @Autowired
+    private BookRepository bookRepository;
+
+    public List<CustomerOrder> getAllCustomerOrders() {
         return customerOrderRepository.findAll();
     }
 
-    public Optional<CustomerOrder> confirmOrder(CustomerOrder customerOrder , User user)
-    {
-        //zmienijszyc ilosc produktu z koszyka jak nie ma to wyjebac cos
+    public Optional<CustomerOrder> confirmOrder(CustomerOrder customerOrder, User user) {
         CustomerOrder newCustomerOrder = null;
         Cart cart = cartRepostitory.findOne(customerOrder.getCart().getCartId());
-        if(cart != null) {
-            newCustomerOrder = new CustomerOrder();
+        if (cart != null) {
+            countQuantity(cart.getCartItems());
+            cart.addToCart(new CartItem(getShippingMethod(customerOrder.getShippingMethod())));
             String GUID = Token.generateGUID();
-            cart.setCartId(GUID);
-            cartRepostitory.save(cart);
+            cart = cartRepostitory.save(copyCart(cart,GUID));
 
             CustomerInfo customerInfo = customerOrder.getCustomerInfo();
-            if(user != null)
+            if (user != null)
                 customerInfo.setEmail(user.getEmail());
             customerInfo = customerInfoRepository.save(customerInfo);
-
-            createOrder(user, newCustomerOrder, cart, GUID, customerInfo);
-            customerOrderRepository.save(newCustomerOrder);
+            newCustomerOrder = createOrder(user, customerOrder, cart, GUID, customerInfo);
+            newCustomerOrder = customerOrderRepository.save(newCustomerOrder);
+            cartRepostitory.delete(customerOrder.getCart().getCartId());
             // wyslac meila
         }
         return Optional.of(newCustomerOrder);
     }
 
-    private void createOrder(User user, CustomerOrder newCustomerOrder, Cart cart, String GUID, CustomerInfo customerInfo) {
-        newCustomerOrder.setCart(cart);
-        newCustomerOrder.setDate(new Date(DataUtil.currentTimeInMillis));
-        newCustomerOrder.setOrderNumber(GUID);
-        newCustomerOrder.setPaid(false);
-        newCustomerOrder.setShipped(false);
-        newCustomerOrder.setTrackingNumber(null);
-        newCustomerOrder.setUser(user);
-        newCustomerOrder.setCustomerInfo(customerInfo);
+    private CustomerOrder createOrder(User user, CustomerOrder customerOrderDTO, Cart cart, String GUID, CustomerInfo customerInfo) {
+        CustomerOrder customerOrder = new CustomerOrder();
+        customerOrder.setShippingMethod(customerOrderDTO.getShippingMethod());
+        customerOrder.setCart(cart);
+        customerOrder.setDate(new Date(DataUtil.currentTimeInMillis));
+        customerOrder.setOrderNumber(GUID);
+        customerOrder.setPaid(false);
+        customerOrder.setShipped(false);
+        customerOrder.setTrackingNumber(null);
+        customerOrder.setUser(user);
+        customerOrder.setCustomerInfo(customerInfo);
+        return customerOrder;
+    }
+
+    public CustomerInfo test() {
+        return customerInfoRepository.findOne(new Long(1));
+    }
+
+    private Book getShippingMethod(String shippingMethodName) {
+        Book book = bookRepository.findOne(QBook.book.description.eq(shippingMethodName));
+        if(book != null) return book;
+        else return bookRepository.findOne(1L);
+    }
+
+    private void countQuantity(Map<Long,CartItem> cartItems)
+    {
+        for (CartItem value : cartItems.values()) {
+            int quantity = value.getBook().getQuantity();
+            value.getBook().setQuantity(quantity - value.getQuantity());
+        }
+    }
+
+    private Cart copyCart(Cart cart , String GUID)
+    {
+        Cart newCart = new Cart();
+        newCart.setCartId(GUID);
+        newCart.setCartItems(cart.getCartItems());
+        newCart.setTotalCost(cart.getTotalCost());
+        return newCart;
     }
 }
