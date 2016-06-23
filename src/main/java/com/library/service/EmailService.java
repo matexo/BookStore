@@ -14,8 +14,8 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    private static String host = "http://localhost:8080/shop/";
-    private static String email = "matexo15@gmail.com";
+    public static String host = "http://localhost:8080/shop/";
+    public static String email = "matexo15@gmail.com";
     private StringBuilder sb;
 
     public void sendEmail(String to, String subject, String text)
