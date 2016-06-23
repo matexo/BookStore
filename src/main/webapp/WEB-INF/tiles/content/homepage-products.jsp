@@ -7,8 +7,8 @@
             <h4 class="text-center">Nowości</h4>
         </div>
 
-        <div class="row" ng-controller="FeaturedBooksController">
-            <div class="col-xs-12 col-md-4" ng-repeat="book in books | limitTo:6">
+        <div class="row" ng-controller="BooksController">
+            <div class="col-xs-12 col-md-4" ng-repeat="book in books">
                 <div class="thumbnail">
                     <img src="<spring:url value="images/products/{{book.bookId}}.jpg"/>"/>
                     <div class="caption">
@@ -16,9 +16,12 @@
                             <h3>{{book.title}}</h3>
                             <p>Autor: {{book.author}}</p>
                             <p>Cena: {{book.unitPrice}} PLN</p>
-                            <button class="btn btn-danger" disabled="disabled" ng-show="{{book.quantity}} < 1">Produkt niedostępny</button>
+                            <button class="btn btn-danger" disabled="disabled" ng-show="{{book.quantity}} < 1">Produkt
+                                niedostępny
+                            </button>
                             <button class="btn btn-success" ng-show="{{book.quantity}} > 0">Dodaj do koszyka</button>
-                            <a class="btn btn-default" href="<spring:url value="products/info/{{book.bookId}}"/>">Pokaż więcej</a>
+                            <a class="btn btn-default" href="<spring:url value="products/info/{{book.bookId}}"/>">Pokaż
+                                więcej</a>
                         </div>
                     </div>
                 </div>

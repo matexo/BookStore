@@ -3,13 +3,13 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="base" template="/WEB-INF/tiles/layouts/base.jsp">
+    <definition name="base" template="/WEB-INF/tiles/main/base.jsp">
         <put-attribute name="title" value="" />
-        <put-attribute name="navbar" value="/WEB-INF/tiles/layouts/user-navbar.jsp" />
+        <put-attribute name="navbar" value="/WEB-INF/tiles/main/user-navbar.jsp" />
         <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
         <put-attribute name="content3" value="" />
-        <put-attribute name="footer" value="/WEB-INF/tiles/layouts/footer.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/main/footer.jsp" />
     </definition>
 
     <definition name="home" extends="base">
@@ -26,7 +26,7 @@
 
     <definition name="adminMenu" extends="base">
         <put-attribute name="title" value="Embik | Panel Administratora" />
-        <put-attribute name="navbar" value="/WEB-INF/tiles/layouts/admin-navbar.jsp" />
+        <put-attribute name="navbar" value="/WEB-INF/tiles/main/admin-navbar.jsp" />
         <put-attribute name="content1" value="" />
         <put-attribute name="content2" value="" />
     </definition>

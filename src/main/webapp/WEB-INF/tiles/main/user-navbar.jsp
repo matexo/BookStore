@@ -39,7 +39,7 @@
                 </ul>
                 <hr class="visible-xs divider">
                 <ul class="nav navbar-nav navbar-right" ng-controller="SessionController">
-                    <li ng-hide={{loggedIn}>
+                    <li ng-hide={{loggedIn}}>
                         <a href=<spring:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
