@@ -172,6 +172,41 @@
                 });
         };
 
+        app.controller('OrderController', function ($scope, $http , $window) {
+            $http.get('api/cart').success(function (result) {
+                $scope.cart = result;
+                console.log(result);
+            });
+
+            $scope.finalize = function () {
+                console.log('est');
+                var request = {
+                    "customerInfo": {
+                    "name": $scope.name,
+                        "surname": $scope.surname,
+                        "phoneNumber": $scope.phoneNumber,
+                        "email": $scope.email,
+                        "adress": {
+                        "streetName": $scope.streetName,
+                            "houseNumber": $scope.houseNumber,
+                            "city": $scope.city,
+                            "zipCode": $scope.zipCode
+                    }
+                },
+                    "cart": {
+                    "cartId": $scope.cart.cartId
+                },
+                    "shippingMethod": $scope.shippingMethod
+                };
+                console.log(request);
+                $http.post('/api/order/' , request , {'Content-Type': 'application/json'})
+                    .success(function () {
+                       console.log("OK");
+                    });
+
+            };
+        });
+
 
     });
 

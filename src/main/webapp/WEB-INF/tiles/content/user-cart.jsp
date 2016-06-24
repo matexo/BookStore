@@ -35,7 +35,7 @@
             <p class="text-right text-danger">Koszt całkowity: <strong>{{cartSum | currency:"PLN "}}</strong></p>
         </div>
         <div class="panel-footer">
-            <a class="btn btn-success pull-right">Zrealizuj zamowienie</a>
+            <a class="btn btn-success pull-right" href="/order/finalize/order">Zrealizuj zamowienie</a>
             <div style="clear:both"></div>
         </div>
     </div>
