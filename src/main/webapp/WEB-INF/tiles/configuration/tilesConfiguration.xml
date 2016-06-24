@@ -43,7 +43,7 @@
 
     <definition name="orderStatus" extends="base">
         <put-attribute name="title" value="Embik | Sprawdzenie zamówienia" />
-        <put-attribute name="content1" value="/WEB-INF/tiles/content/user-order-check.jsp" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/order-status.jsp" />
     </definition>
 
     <definition name="adminOrder" extends="base">
@@ -77,5 +77,10 @@
     <definition name="order" extends="base">
         <put-attribute name="title" value="Embik | Zrealizuj zamówienie" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/user-order-finalize.jsp" />
+    </definition>
+
+    <definition name="userOrders" extends="base">
+        <put-attribute name="title" value="Embik | Zrealizuj zamówienie" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/user-orders.jsp" />
     </definition>
 </tiles-definitions>
