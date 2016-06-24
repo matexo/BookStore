@@ -78,8 +78,8 @@
     });
 
     app.controller('BookDetailsController', function ($scope, $http, $location) {
-        alert($location.path());
-        $http.get('/api/book/42').success(function (result) {
+        alert($location.url());
+        $http.get('/api/book/').success(function (result) {
             $scope.product = result;
             console.log(result);
         });
