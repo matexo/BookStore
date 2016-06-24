@@ -77,12 +77,12 @@
 
     });
 
-    app.controller('BookDetailsController', function ($scope, $http, $location) {
-        alert($location.url());
-        $http.get('/api/book/').success(function (result) {
-            $scope.product = result;
-            console.log(result);
-        });
+    app.controller('BookDetailsController', function ($scope, $http, $window) {
+        var productID = $window.location.pathname.split("/")[3];
+        $http.get('/api/book/'+productID).success(function (result) {
+             $scope.product = result;
+             console.log(result);
+         });
     });
 
     app.controller('CartController', function ($scope, $http) {
