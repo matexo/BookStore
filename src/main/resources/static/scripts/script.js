@@ -8,7 +8,7 @@
 
         $scope.login = function (username, password) {
             var request = {'login': username, 'password': password};
-            $http.post('api/login', request).then(function (response) {
+            $http.post('/api/login', request).then(function (response) {
                 localStorage.setItem('loggedIn', true);
                 localStorage.setItem('apiKey', response['data']['apiKey']);
                 if (response['data']['role']['role'] == 'ROLE_USER')
@@ -28,7 +28,7 @@
         };
 
         $scope.register = function (user) {
-            $http.post('api/user/addUser', user).then(function (response) {
+            $http.post('/api/user/addUser', user).then(function (response) {
                 $scope.success = true;
             }, function (response) {
                 $scope.error = true;
@@ -101,7 +101,7 @@
 
     app.controller('CartController', function ($scope, $http) {
         $scope.refreshCart = function () {
-            $http.get('api/cart').success(function (result) {
+            $http.get('/api/cart').success(function (result) {
                 $scope.cartItems = result['cartItems'];
                 $scope.cartSum = result['totalCost'];
             });
@@ -190,43 +190,37 @@
                     $window.location = '/admin/products';
                 });
         };
+    });
 
-        app.controller('OrderController', function ($scope, $http , $window) {
-            $http.get('api/cart').success(function (result) {
-                $scope.cart = result;
-                console.log(result);
-            });
-
-            $scope.finalize = function () {
-                console.log('est');
-                var request = {
-                    "customerInfo": {
-                    "name": $scope.name,
-                        "surname": $scope.surname,
-                        "phoneNumber": $scope.phoneNumber,
-                        "email": $scope.email,
-                        "adress": {
-                        "streetName": $scope.streetName,
-                            "houseNumber": $scope.houseNumber,
-                            "city": $scope.city,
-                            "zipCode": $scope.zipCode
-                    }
-                },
-                    "cart": {
-                    "cartId": $scope.cart.cartId
-                },
-                    "shippingMethod": $scope.shippingMethod
-                };
-                console.log(request);
-                $http.post('/api/order/' , request , {'Content-Type': 'application/json'})
-                    .success(function () {
-                       console.log("OK");
-                    });
-
-            };
+    app.controller('OrderController', function ($scope, $http) {
+        $http.get('/api/cart').success(function (result) {
+            $scope.cartId = result['cartId'];
         });
 
-
+        $scope.finalize = function (name, surname, phoneNumber, email, streetName, houseNumber, city, zipcode, method) {
+            var request = {
+                "customerInfo": {
+                    "name": name,
+                    "surname": surname,
+                    "phoneNumber": phoneNumber,
+                    "email": email,
+                    "adress": {
+                        "streetName": streetName,
+                        "houseNumber": houseNumber,
+                        "city": city,
+                        "zipCode": zipcode
+                    }
+                },
+                "cart": {
+                    "cartId": $scope.cartId
+                },
+                "shippingMethod": method
+            };
+            console.log(request);
+            $http.post('/api/order', request).success(function () {
+                console.log("OK");
+            });
+        };
     });
 
 })();

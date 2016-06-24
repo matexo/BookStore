@@ -191,3 +191,7 @@ select {
 .table-package-info {
     height: 150px;
 }
+
+.radio-input {
+    width: auto;
+}
