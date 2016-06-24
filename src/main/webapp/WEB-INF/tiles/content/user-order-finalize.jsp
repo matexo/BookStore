@@ -43,12 +43,12 @@
                     </div>
                     <div class="form-group">
                         <label for="shippingMethod">Forma wysyłki:</label>
-                        <input class="radio-input" ng-model="method" type="radio" id="shippingMethod" value="Kurier">
+                        <input class="radio-input" ng-model="method" type="radio" id="shippingMethod" value="Wysylka Kurier">
                         <span>Kurier[15zł]</span>
-                        <input class="radio-input" ng-model="method" type="radio" value="Poczta Polska"><span>Poczta
+                        <input class="radio-input" ng-model="method" type="radio" value="Wysylka Poczta"><span>Poczta
                         Polska[10zł]</span>
                         <input class="radio-input" ng-model="method" type="radio"
-                               value="Inpost"><span>Inpost[8zł]</span>
+                               value="Wysylka Inpost"><span>Inpost[8zł]</span>
 
                     </div>
                     <div class="col-md-6">

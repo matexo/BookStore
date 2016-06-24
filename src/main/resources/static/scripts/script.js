@@ -236,7 +236,7 @@
                 },
                 "shippingMethod": method
             };
-            $http.post('/api/order', request).success(function () {
+            $http.post('/api/order', request , {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}}).success(function () {
                 localStorage.setItem('showParcelInfo', true);
                 $window.location = '/';
             });

@@ -35,6 +35,9 @@ public class OrderService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     public List<CustomerOrder> getAllCustomerOrders() {
         return customerOrderRepository.findAll();
     }
@@ -55,7 +58,8 @@ public class OrderService {
             newCustomerOrder = createOrder(user, customerOrder, cart, GUID, customerInfo);
             newCustomerOrder = customerOrderRepository.save(newCustomerOrder);
             cartRepostitory.delete(customerOrder.getCart().getCartId());
-            // wyslac meila
+            emailService.sendEmail(customerInfo.getEmail() , "Zamówienie" ,
+                    emailService.getConfirmationOfOrderText(newCustomerOrder.getOrderNumber(),newCustomerOrder.getCart().getTotalCost().toString()));
         }
         return Optional.of(newCustomerOrder);
     }
@@ -101,9 +105,9 @@ public class OrderService {
         return newCart;
     }
 
-    public Optional<CustomerOrder> getCustomerOrder(String orderNumber)
+    public CustomerOrder getCustomerOrder(String orderNumber)
     {
-        return Optional.of(customerOrderRepository.findOne(QCustomerOrder.customerOrder.orderNumber.eq(orderNumber)));
+        return customerOrderRepository.findOne(QCustomerOrder.customerOrder.orderNumber.eq(orderNumber));
     }
 
     public Optional<List<CustomerOrder>> getCustomerOrderForUser(String apiKey)

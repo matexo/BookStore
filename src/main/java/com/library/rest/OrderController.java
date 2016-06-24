@@ -6,10 +6,12 @@ import com.library.domain.User;
 import com.library.service.OrderService;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -38,9 +40,12 @@ public class OrderController {
     @RequestMapping(value = "/{orderNumber}" , method = RequestMethod.GET)
     public ResponseEntity<CustomerOrder> getCustomerOrderForId(@PathVariable String orderNumber)
     {
-    return orderService.getCustomerOrder(orderNumber)
-            .map(customerOrder -> new ResponseEntity<>(customerOrder,HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    CustomerOrder customerOrder = orderService.getCustomerOrder(orderNumber);
+    if(customerOrder != null)
+    {
+        return new ResponseEntity<CustomerOrder>(customerOrder,HttpStatus.OK);
+    }
+        else return new ResponseEntity<CustomerOrder>(HttpStatus.NOT_FOUND);
     }
 
     @RequestMapping(value = "/user" , method = RequestMethod.GET)
@@ -52,9 +57,9 @@ public class OrderController {
     }
 
     @RequestMapping(value = "" , method = RequestMethod.POST)
-    public ResponseEntity<CustomerOrder> confirmOrder(@RequestBody CustomerOrder customerOrder, @RequestHeader(value = "apiKey", defaultValue = "") String apiKey)
+    public ResponseEntity<CustomerOrder> confirmOrder(@RequestBody CustomerOrder customerOrder, @RequestHeader HttpHeaders headers)
     {
-
+        String apiKey = headers.get("apikey").get(0);
         User user = null;
         if(apiKey != null)
             user = userService.getUserInfo(apiKey);

@@ -31,7 +31,7 @@ public class EmailService {
     {
         sb = new StringBuilder();
         sb.append("Witaj!\n");
-        sb.append("Twoje zamówienie o numerze" + orderNumber + "zostało przekazane do sklepu.\n");
+        sb.append("Twoje zamówienie o numerze  " + orderNumber + "  zostało przekazane do sklepu.\n");
         sb.append("W celu dalszej realizacji zamówienie należy wysłać wpłatę na nr konta: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX\n");
         sb.append("W tytule przelewu zamieść swój numer zamówienia. Przyspieszy to weryfikację.\n");
         sb.append("Kwota, która należy wysłać to: " + totalCost + "\n");
