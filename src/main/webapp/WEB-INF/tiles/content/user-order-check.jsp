@@ -2,11 +2,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<div class="container">
+<div class="container" ng-controller="UserOrderController">
     <div class="row">
         <div class="col-sm-6 col-lg-6 col-sm-offset-3 col-lg-offset-3">
             <form method="GET" action="">
-                <input type="text" id="orderNumber" name="orderNumber" class="formControl"/> <input
+                <input type="text" id="orderNumber" name="orderNumber" class="formControl" ng-model="orderNumber"/> <input
                     type="submit" value="Sprawdź swoje zamówienie"
                     class="btn btn-success"/>
             </form>

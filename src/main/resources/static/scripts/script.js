@@ -44,9 +44,12 @@
 
 
     app.controller('UserOrderController', function ($scope, $http) {
-        $http.get('/api/order').success(function (result) {
-            $scope.orders = result;
-        });
+        $scope.getOrder = function ($http) {
+            $http.get('/api/order').success(function (result) {
+                $scope.orderNumber = result;
+            });
+        }
+
     });
 
     app.controller('CartController', function ($scope, $http) {
