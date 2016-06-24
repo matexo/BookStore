@@ -44,7 +44,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/user" , method = RequestMethod.GET)
-    public ResponseEntity<List<CustomerOrder>> getCustomerOrderForUser(@RequestHeader("api-key") String apiKey)
+    public ResponseEntity<List<CustomerOrder>> getCustomerOrderForUser(@RequestHeader("apiKey") String apiKey)
     {
         return orderService.getCustomerOrderForUser(apiKey)
                 .map(customerOrders -> new ResponseEntity<>(customerOrders,HttpStatus.OK))
@@ -52,8 +52,9 @@ public class OrderController {
     }
 
     @RequestMapping(value = "" , method = RequestMethod.POST)
-    public ResponseEntity<CustomerOrder> confirmOrder(@RequestBody CustomerOrder customerOrder, @RequestHeader("api-key") String apiKey)
+    public ResponseEntity<CustomerOrder> confirmOrder(@RequestBody CustomerOrder customerOrder, @RequestHeader(value = "apiKey", defaultValue = "") String apiKey)
     {
+
         User user = null;
         if(apiKey != null)
             user = userService.getUserInfo(apiKey);
