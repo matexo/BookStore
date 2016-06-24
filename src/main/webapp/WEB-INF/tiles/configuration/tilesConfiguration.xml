@@ -67,7 +67,7 @@
 
     <definition name="productInfo" extends="base">
         <put-attribute name="title" value="Embik | Szczegóły produktu" />
-        <put-attribute name="content1" value="/WEB-INF/tiles/content/show-more.jsp" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/user-product-details.jsp" />
     </definition>
 
     <definition name="cart" extends="base">

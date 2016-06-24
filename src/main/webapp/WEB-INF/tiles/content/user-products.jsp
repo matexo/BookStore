@@ -46,10 +46,10 @@
                                 <h6 class="text-muted">{{book.bookCategory[0].bookCategory}}</h6>
                                 <h4 class="text-danger">{{book.unitPrice | currency:"PLN "}}</h4>
                                 <button class="btn btn-default btn-block margin-top-20" disabled="disabled"
-                                        ng-show="{{book.quantity}} < 1">
+                                        ng-hide="book.quantity > 0">
                                     Produkt niedostępny
                                 </button>
-                                <button class="btn btn-success btn-block margin-top-20" ng-show="{{book.quantity}} > 0">
+                                <button class="btn btn-success btn-block margin-top-20" ng-show="book.quantity > 0">
                                     Dodaj do koszyka
                                 </button>
                             </div>
