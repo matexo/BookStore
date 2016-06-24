@@ -150,3 +150,7 @@ li:hover {
 .login-alert {
     padding: 5px 10px;
 }
+
+select {
+    width: 100%;
+}

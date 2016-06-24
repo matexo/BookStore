@@ -27,7 +27,7 @@
     <definition name="adminMenu" extends="base">
         <put-attribute name="title" value="Embik | Panel Administratora" />
         <put-attribute name="navbar" value="/WEB-INF/tiles/main/admin-navbar.jsp" />
-        <put-attribute name="content1" value="" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-product.jsp" />
         <put-attribute name="content2" value="" />
     </definition>
 

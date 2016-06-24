@@ -2,33 +2,42 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <div class="container" ng-controller="AdminProductController">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Id książki</th>
-            <th>Tytuł</th>
-            <th>Autor</th>
-            <th>Kategoria</th>
-            <th>Cena produktu</th>
-            <th>Ilość</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-            <tr ng-repeat="book in books">
-                <td>{{book.bookId }}</td>
-                <td>{{book.title}}</td>
-                <td>{{book.author}}</td>
-                <td>{{book.bookCategory.bookCategory}}</td>
-                <td>{{book.unitPrice}}</td>
-                <td>{{book.quantity }}</td>
-                <td><a class="btn btn-success"
-                       href=<spring:url value="/products/info/{{book.bookId}}"/>>Pokaż
-                    więcej</a></td>
-                <td>
-                <td><button ng-model="selBook" ng-click="deleteBook(book.bookId)">Usuń</button></td>
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <h4>Lista produktów</h4>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id książki</th>
+                    <th>Tytuł</th>
+                    <th>Autor</th>
+                    <th>Kategoria</th>
+                    <th>Cena produktu</th>
+                    <th>Ilość</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tr ng-repeat="book in books">
+                    <td><strong>{{book.bookId }}</strong></td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.bookCategory[0].bookCategory}}</td>
+                    <td>{{book.unitPrice}}</td>
+                    <td>{{book.quantity }}</td>
+                    <td><a class="btn btn-success"
+                           href=<spring:url value="/products/info/{{book.bookId}}"/>>Pokaż
+                        więcej</a></td>
+                    <td>
+                    <td>
+                        <button class="btn btn-danger" ng-model="selBook" ng-click="deleteBook(selBook)">Usuń</button>
+                    </td>
 
-            </tr>
-    </table>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

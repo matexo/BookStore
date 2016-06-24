@@ -1,24 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
 <div class="container" ng-controller="AdminProductController">
     <div class="row">
-        <div class="col-sm-6 col-lg-6 col-sm-offset-3 col-lg-offset-3">
-                <form>
-
-                <div class="panel panel-success">
-                    <div class="panel panel-header">Formularz produktu</div>
-                    <div class="panel pane-body">
-                        <select ng-model="selBok" ng-click="selectedBook(selBok)">
-                        <option ng-repeat="book in books" value="{{book.bookId}}">{{book.title}}</option>
-                        </select>
+        <div class="col-sm-8 col-lg-8 col-sm-offset-2 col-lg-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center"><h4>Formularz produktu</h4></div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <select ng-model="selBok" ng-click="selectedBook(selBok)">
+                                <option ng-repeat="book in books" value="{{book.bookId}}">{{book.title}}</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="bookId">Id</label>
-                            <input path="bookId" id="bookId" class="form-control" ng-model="book.bookId" disabled/>
+                            <input path="bookId" id="bookId" class="form-control" ng-model="book.bookId" disabled="disabled"/>
                         </div>
-
                         <div class="form-group">
                             <label for="title">Tytuł</label>
                             <input path="title" id="title" class="form-control" ng-model="book.title"/>
@@ -35,7 +33,9 @@
                         <div class="form-group">
                             <label>Kategoria</label>
                             <select ng-model="book.category">
-                                <option ng-repeat="category in categories" value="{{category.bookCategoryId}}">{{category.bookCategory}}</option>
+                                <option ng-repeat="category in categories" value="{{category.bookCategoryId}}">
+                                    {{category.bookCategory}}
+                                </option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -58,11 +58,11 @@
                             <input path="year" id="year" class="form-control" ng-model="book.year"/>
                         </div>
 
-                        <input type="submit" value="Wyslij formularz" ng-click="addOrEditProduct()"
-                               class="btn btn-success"/>
-                    </div>
+                        <input type="submit" value="Wyslij formularz"
+                               class="btn btn-success btn-block"/>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
