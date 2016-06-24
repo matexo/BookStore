@@ -151,9 +151,9 @@ INSERT INTO book_rating(comment , nick , rating_date , rating , book_id) values 
 INSERT INTO customer_message(customer_email , date , message) values ('user@test.pl' , current_date , 'Zamówienie gotowe do odbioru');
 
 -- -- koszyk
--- INSERT INTO cart(cart_id, total_cost) VALUES (1, 20);
---
--- -- cartItem
+INSERT INTO cart(cart_id, total_cost) VALUES (1, 20);
+
+-- cartItem
 -- INSERT INTO cart_item(cart_item_id, quantity, total_price, book_id, cart_id, cart_items_key)
 -- VALUES (1, 20, 20, 1, 1, 1);
 -- INSERT INTO cart_item(cart_item_id, quantity, total_price, book_id, cart_id, cart_items_key)
@@ -162,7 +162,7 @@ INSERT INTO customer_message(customer_email , date , message) values ('user@test
 -- VALUES (3, 10, 100, 3, 1, 3);
 -- INSERT INTO cart_item(cart_item_id, quantity, total_price, book_id, cart_id, cart_items_key)
 -- VALUES (4, 5, 30, 4, 1, 4);
---
--- -- zamowienie
--- INSERT INTO customer_order(order_id, date, order_number, paid, shipped, shipping_method, tracking_number, cartid, customer_id, user_id)
--- VALUES (1, current_date, 1, FALSE, FALSE, 'Wysylka Poczta', '123456', 1, 1, 1);
+
+-- zamowienie
+INSERT INTO customer_order(order_id, date, order_number, paid, shipped, shipping_method, tracking_number, cartid, customer_id, user_id)
+VALUES (1, current_date, 1, FALSE, FALSE, 'Wysylka Poczta', '123456', 1, 1, 1);
