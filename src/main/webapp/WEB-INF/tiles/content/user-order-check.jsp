@@ -5,105 +5,133 @@
         <div class="row">
             <div class="col-sm-6 col-lg-6 col-sm-offset-3 col-lg-offset-3">
                 <form>
-                    <input type="text" ng-model="orderNumber"/>
-                    <button class="btn btn-success" ng-model="orderNumber" ng-click="getCustomerOrder(orderNumber)">
-                        Sprawdź swoje zamówienie
-                    </button>
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="orderNumber"
+                               placeholder="Wpisz numer zamówienia"/>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="getCustomerOrder(orderNumber)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="panel panel-success">
+    <div class="panel panel-default margin-top-20">
         <div class="panel-heading">
-            <p class="text-center">Zamowienie nr {{customerOrder.orderNumber}}</p>
+            <h4 class="text-center"><strong>Zamowienie nr {{customerOrder.orderNumber}}</strong></h4>
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-lg-4 col-sm-4">
-                    <div class="panel panel-success">
+                <div class="col-md-4">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <p class="text-center">Dane do wysyłki:</p>
+                            <h5 class="text-center"><strong>Dane do wysyłki:</strong></h5>
                         </div>
-                        <div class="panel panel-body">
-                            <dl class="dl-horizontal">
-                                <dt>Ulica</dt>
-                                <dd>{{ customerOrder.customerInfo.adress.streetName }}</dd>
-                                <dt>Miasto</dt>
-                                <dd>{{ customerOrder.customerInfo.adress.city }}</dd>
-                                <dt>Kod pocztowy</dt>
-                                <dd>{{ customerOrder.customerInfo.adress.zipCode }}</dd>
-                            </dl>
+                        <div class="panel-body">
+                            <table class="table table-striped table-package-info">
+                                <tr>
+                                    <td class="text-right"><strong>Ulica:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.adress.streetName}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Miasto:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.adress.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Kod pocztowy:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.adress.zipCode}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h5 class="text-center"><strong>Dane klienta:</strong></h5>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-striped table-package-info">
+                                <tr>
+                                    <td class="text-right"><strong>Imię:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Nazwisko:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.surname}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Telefon:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.phoneNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Email:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.customerInfo.email}}</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-sm-4">
-                    <div class="panel panel-success">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <p class="text-center">Dane klienta:</p>
+                            <h5 class="text-center"><strong>Dane zamowienia:</strong></h5>
                         </div>
-                        <div class="panel panel-body">
-                            <dl class="dl-horizontal">
-                                <dt>Imię</dt>
-                                <dd>{{ customerOrder.customerInfo.name }}</dd>
-                                <dt>Nazwisko</dt>
-                                <dd>{{ customerOrder.customerInfo.surname }}</dd>
-                                <dt>Telefon</dt>
-                                <dd>{{ customerOrder.customerInfo.phoneNumber }}</dd>
-                                <dt>Email</dt>
-                                <dd>{{ customerOrder.customerInfo.email }}</dd>
-                            </dl>
+                        <div class="panel-body">
+                            <table class="table table-striped table-package-info">
+                                <tr>
+                                    <td class="text-right"><strong>Metoda wysyłki:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.shippingMethod}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Stan wysyłki:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.shipped}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Tracking:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.trackingNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-right"><strong>Wpłata:</strong></td>
+                                    <td style="min-width: 100px">{{customerOrder.paid}}</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-sm-4">
-                    <div class="panel panel-success">
+                <div class="col-md-12">
+                    <div class="panel panel-info">
                         <div class="panel-heading">
-                            <p class="text-center">Dane zamowienia</p>
+                            <h5 class="text-center"><strong>Produkty</strong></h5>
                         </div>
-                        <div class="panel panel-body">
-                            <dl class="dl-horizontal">
-                                <dt>Metoda wysyłki</dt>
-                                <dd>{{customerOrder.shippingMethod}}</dd>
-                                <dt>Stan wysyłki</dt>
-                                <dd>{{customerOrder.shipped}}</dd>
-                                <dt>Tracking</dt>
-                                <dd>{{ customerOrder.trackingNumber }}</dd>
-                                <dt>Wpłata</dt>
-                                <dd>
-                                    {{customerOrder.paid}}
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-12 col-sm-12">
-                    <div class="panel panel-success">
-                        <div class="panel panel-heading">Produkty</div>
-                        <div class="panel panel-body">
+                        <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>Nazwa produktu:</th>
-                                    <th>Ilość produktu:</th>
-                                    <th>Cena jednostkowa:</th>
-                                    <th>Cena produktów</th>
+                                    <th class="text-center">Ilość produktu:</th>
+                                    <th class="text-center">Cena jednostkowa:</th>
+                                    <th class="text-right">Suma</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="item in customerOrder.cart.cartItems">
-                                    <td>{{item.book.title}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>{{item.product.unitPrice}}</td>
-                                    <td>{{item.totalPrice}}</td>
+                                    <td style="vertical-align: middle">{{item.book.title}}</td>
+                                    <td style="vertical-align: middle" class="text-center">{{item.quantity}}</td>
+                                    <td style="vertical-align: middle" class="text-center">{{item.product.unitPrice}}
+                                    </td>
+                                    <td style="vertical-align: middle" class="text-right">{{item.totalPrice}}</td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <p class="text-right">Cena całkowita produktów
-                                {{customerOrder.cart.totalCost}}</p>
+                            <p class="text-right text-danger">Koszt całkowity:
+                                <strong>{{customerOrder.cart.totalCost | currency:"PLN "}}</strong></p>
                         </div>
                     </div>
                 </div>

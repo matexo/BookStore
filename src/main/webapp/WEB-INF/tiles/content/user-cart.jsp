@@ -14,7 +14,7 @@
                     <td><strong>Nazwa produktu</strong></td>
                     <td class="text-center"><strong>Cena za sztukę</strong></td>
                     <td class="text-center"><strong>Ilość sztuk</strong></td>
-                    <td class="text-right"><strong>Cena</strong></td>
+                    <td class="text-right"><strong>Suma</strong></td>
                 </tr>
                 </thead>
                 <tr ng-repeat="item in cartItems">
