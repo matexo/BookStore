@@ -86,7 +86,9 @@
     });
 
     app.controller('CartController', function ($scope, $http) {
-
+        $http.get('/api/cart').success(function (result) {
+            $scope.orders = result;
+        });
     });
 
 

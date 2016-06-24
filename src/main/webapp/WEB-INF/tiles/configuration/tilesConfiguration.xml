@@ -69,4 +69,9 @@
         <put-attribute name="title" value="Embik | Szczegóły produktu" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/show-more.jsp" />
     </definition>
+
+    <definition name="cart" extends="base">
+        <put-attribute name="title" value="Embik | Szczegóły produktu" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/user-cart.jsp" />
+    </definition>
 </tiles-definitions>
