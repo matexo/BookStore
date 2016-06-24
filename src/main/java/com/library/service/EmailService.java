@@ -35,7 +35,7 @@ public class EmailService {
         sb.append("W celu dalszej realizacji zamówienie należy wysłać wpłatę na nr konta: XXXX-XXXX-XXXX-XXXX-XXXX-XXXX\n");
         sb.append("W tytule przelewu zamieść swój numer zamówienia. Przyspieszy to weryfikację.\n");
         sb.append("Kwota, która należy wysłać to: " + totalCost + "\n");
-        sb.append(footer(orderNumber));
+        //sb.append(footer(orderNumber));
         return sb.toString();
     }
 

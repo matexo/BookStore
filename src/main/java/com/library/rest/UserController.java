@@ -19,10 +19,10 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/addUser" , method = RequestMethod.POST)
-    public ResponseEntity<String> addNewUser(@RequestBody User user){
+    public ResponseEntity<User> addNewUser(@RequestBody User user){
     return userService.addNewUser(user)
-            .map(newUser -> new ResponseEntity<>(newUser.getUsername() , HttpStatus.OK))
-            .orElse(new ResponseEntity<>("Bład" , HttpStatus.INTERNAL_SERVER_ERROR));
+            .map(newUser -> new ResponseEntity<>(newUser , HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @RequestMapping(value= "/activate/token/{token}" , method = RequestMethod.GET)

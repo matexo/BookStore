@@ -21,7 +21,7 @@
                             <label for="password">Hasło</label>
                             <input id="password" class="form-control" ng-model="user.password" type="password"/>
                         </div>
-                        <div class="alert alert-danger login-alert" role="alert" ng-show="success">Zostałeś zarejestrowany. Sprawdź swoją skrzynkę odbiorczą</div>
+                        <div class="alert alert-danger login-alert" role="alert" ng-show="success">Zostałeś zarejestrowany</div>
                         <div class="alert alert-danger login-alert" role="alert" ng-show="error">Rejestracja nieudana</div>
                         <div class="form-group">
                             <input type="submit" value="Utwórz" class="btn btn-success btn-block"
