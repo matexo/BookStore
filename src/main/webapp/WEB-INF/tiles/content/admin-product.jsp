@@ -27,7 +27,7 @@
                        href=<spring:url value="/products/info/{{book.bookId}}"/>>Pokaż
                     więcej</a></td>
                 <td>
-                <td><button ng-model="selBook" ng-click="deleteBook(selBook)">Usuń</button></td>
+                <td><button ng-model="selBook" ng-click="deleteBook(book.bookId)">Usuń</button></td>
 
             </tr>
     </table>

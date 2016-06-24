@@ -35,14 +35,14 @@ public class UserService {
         newUser.setPassword(user.getPassword());
         newUser.setToken(Token.generateToken());
         newUser.setActivationTimeStamp(new Timestamp(DataUtil.currentTimeInMillis));
-        newUser.setActivated(false);
+        newUser.setActivated(true);
         newUser.setApiKey(null);
         Role role = new Role();
         role.setRole("ROLE_USER");
         role.setUser(newUser);
         newUser.setRole(role);
-        newUser = userRepository.save(newUser); // co robic jak nie stworzy(taki sam email)
-        emailService.sendEmail("matexo15@gmail.com", "TEST" , "TEST");
+        newUser = userRepository.save(newUser);
+        //emailService.sendEmail("matexo15@gmail.com", "TEST" , "TEST");
         return Optional.of(newUser);
     }
 
@@ -62,7 +62,6 @@ public class UserService {
                 user.setToken(Token.generateToken());
                 user.setActivationTimeStamp(new Timestamp(System.currentTimeMillis()));
                 userRepository.save(user);
-                //wyslac email z nowym
                 return false;
             }
         }
@@ -110,7 +109,6 @@ public class UserService {
         return user;
     }
 
-    //do testow
     public User getUser()
     {
         return userRepository.findOne(new Long(1));

@@ -120,13 +120,14 @@
         
         $scope.deleteBook = function (bookId) {
             console.log(bookId);
-            var url = 'api/book/' + bookId;
+            var url = '/api/book/' + bookId;
+            console.log(localStorage.getItem('apiKey'));
             var request = {
                 method: 'DELETE',
                 url: url,
                 headers: {
                     'Content-Type': 'application/json' ,
-                    'api-key': localStorage.getItem('api-key')
+                    'api-key': localStorage.getItem('apiKey')
                 }
             };
             $http(request)
