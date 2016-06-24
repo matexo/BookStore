@@ -16,7 +16,7 @@
                             <input type="password" name="password" id="password" placeholder="Hasło"
                                    class="form-control" ng-model="password"/>
                         </div>
-                        <div class="alert alert-danger login-alert" role="alert" ng-show="error">Błędne dane logowania</div>
+                        <div class="alert alert-danger" role="alert" ng-show="error">Błędne dane logowania</div>
                         <div class="form-group">
                             <input class="btn btn-success btn-block" type="submit" value="Zaloguj się"
                                    ng-click="login(username,password)"/>

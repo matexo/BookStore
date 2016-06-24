@@ -8,11 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="<spring:url value="/libraries/bootstrap/css/bootstrap.min.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<spring:url value="/libraries/animate/animate.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<spring:url value="/styles/style.css"/>"/>
     <title><tiles:insertAttribute name="title"/></title>
 </head>
 <body ng-controller="SessionController">
 <div class="wrapper" ng-controller="CartController">
+    <div class="alert alert-danger animated cart-info text-center cart-remove">Produkt został usunięty z koszyka</div>
+    <div class="alert alert-success animated cart-info text-center cart-add">Produkt został dodany z koszyka</div>
     <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="content1"/>
     <tiles:insertAttribute name="content2"/>

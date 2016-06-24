@@ -69,12 +69,12 @@
 
     app.controller('UserOrderController', function ($scope, $http) {
 
-            $scope.getCustomerOrder = function (orderNumber) {
-                var url = '/api/order/' + $scope.orderNumber;
-                console.log(url + orderNumber);
-                $http.get(url).success(function (result) {
-                    $scope.customerOrder = result;
-                });
+        $scope.getCustomerOrder = function (orderNumber) {
+            var url = '/api/order/' + $scope.orderNumber;
+            console.log(url + orderNumber);
+            $http.get(url).success(function (result) {
+                $scope.customerOrder = result;
+            });
 
         };
 
@@ -101,14 +101,20 @@
         $scope.addToCart = function (productId) {
             $http.post('/api/cart/book/' + productId).success(function (response) {
                 $scope.refreshCart();
-                alert("Przedmiot został dodany do koszyka.");
+                $('.cart-add').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
+                setTimeout(function () {
+                    $('.cart-add').removeClass('fadeIn').addClass('fadeOut');
+                }, 1000);
             });
         };
 
         $scope.removeFromCart = function (productId) {
             $http.delete('/api/cart/book/' + productId).success(function (response) {
                 $scope.refreshCart();
-                alert("Przedmiot został usunięty z koszyka.");
+                $('.cart-remove').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
+                setTimeout(function () {
+                    $('.cart-remove').removeClass('fadeIn').addClass('fadeOut');
+                }, 1000);
             });
         };
     });
