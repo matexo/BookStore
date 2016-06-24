@@ -16,6 +16,11 @@ footer {
     background-color: #f8f8f8;
 }
 
+a:hover,
+a {
+    text-decoration: none;
+}
+
 p {
     font-size: 15px;
     word-wrap: break-word;
@@ -97,7 +102,7 @@ li:hover {
 }
 
 .thumbnail {
-    height: 550px;
+    height: 560px;
 }
 
 .margin-top-20 {
@@ -158,4 +163,9 @@ select {
 
 .margin-bottom-20 {
     margin-bottom: 20px;
+}
+
+.btn a {
+    text-decoration: none;
+    color: white;
 }

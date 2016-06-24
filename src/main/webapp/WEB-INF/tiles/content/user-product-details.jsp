@@ -26,7 +26,7 @@
                                 ng-hide="product.quantity > 0">
                             Produkt niedostępny
                         </button>
-                        <button class="btn btn-success btn-block margin-top-20" ng-show="product.quantity > 0">
+                        <button class="btn btn-success btn-block margin-top-20" ng-show="product.quantity > 0 && !{{isAdmin}}">
                             Dodaj do koszyka
                         </button>
                     </div>
