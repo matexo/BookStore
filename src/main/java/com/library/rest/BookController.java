@@ -58,7 +58,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "" , method = RequestMethod.POST)
-    public ResponseEntity<Book> addNewBook(@RequestBody Book book , @RequestHeader("api-key") String apiKey)
+    public ResponseEntity<Book> addNewBook(@RequestBody Book book , @RequestHeader("apiKey") String apiKey)
     {
         if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
             Book newBook = bookService.addNewBook(book);
@@ -69,7 +69,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/{bookId}" , method = RequestMethod.PUT)
-    public ResponseEntity<Long> editBook(@PathVariable Long bookId , @RequestBody Book book , @RequestHeader("api-key") String apiKey)
+    public ResponseEntity<Long> editBook(@PathVariable Long bookId , @RequestBody Book book , @RequestHeader("apiKey") String apiKey)
     {
         if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
             Long id = bookService.editBook(book, bookId);
@@ -79,7 +79,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/{bookId}" , method = RequestMethod.DELETE)
-    public ResponseEntity<Long> deleteBook(@PathVariable Long bookId , @RequestHeader("api-key") String apiKey)
+    public ResponseEntity<Long> deleteBook(@PathVariable Long bookId , @RequestHeader("apiKey") String apiKey)
     {
         if(userService.getRole(apiKey).equals("ROLE_ADMIN")) {
             Long id = bookService.deleteBook(bookId);

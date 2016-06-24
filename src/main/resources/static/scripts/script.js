@@ -28,7 +28,6 @@
         };
 
         $scope.register = function (user) {
-            var request = {'login': username, 'email': email, 'password': password};
             $http.post('api/user/addUser', user).then(function (response) {
                 $scope.success = true;
             }, function (response) {
@@ -98,7 +97,7 @@
         });
     });
 
-    app.controller('AdminProductController', function ($scope, $http) {
+    app.controller('AdminProductController', function ($scope, $http , $window) {
 
         $http.get('/api/book/all').success(function (result) {
             $scope.books = result;
@@ -111,7 +110,7 @@
         $scope.selectedBook = function (bookId) {
             console.log(bookId);
             console.log($scope.books);
-            $scope.book = $scope.books[bookId];
+            $scope.book = $scope.books[bookId-1];
         };
 
         $scope.refresh = function () {
@@ -129,7 +128,7 @@
                 url: url,
                 headers: {
                     'Content-Type': 'application/json' ,
-                    'api-key': localStorage.getItem('apiKey')
+                    'apiKey': localStorage.getItem('apiKey')
                 }
             };
             $http(request)
@@ -139,10 +138,10 @@
         };
         
         $scope.addOrEditProduct = function () {
-            $http.post( 'api/book',request,
-                {headers: {'api-key': localStorage.getItem('api-key')}})
+            $http.post( '/api/book', $scope.book ,
+                {headers: {'Content-Type': 'application/json' , 'apiKey': localStorage.getItem('apiKey')}})
                 .success(function (response) {
-                    $scope.refresh();
+                    $window.location = '/admin/products';
                 });
         };
         

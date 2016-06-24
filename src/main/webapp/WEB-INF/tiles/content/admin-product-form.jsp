@@ -58,7 +58,7 @@
                             <input path="year" id="year" class="form-control" ng-model="book.year"/>
                         </div>
 
-                        <input type="submit" value="Wyslij formularz"
+                        <input type="submit" value="Wyslij formularz" ng-click="addOrEditProduct()"
                                class="btn btn-success"/>
                     </div>
                 </div>
