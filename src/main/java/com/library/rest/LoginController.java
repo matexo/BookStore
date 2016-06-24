@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by Matexo on 2016-06-22.
  */
 @RestController
-@RequestMapping(value = "api")
+@RequestMapping(value = "api/")
 public class LoginController {
 
     @Autowired

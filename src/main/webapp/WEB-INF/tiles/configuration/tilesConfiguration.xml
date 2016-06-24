@@ -45,4 +45,20 @@
         <put-attribute name="title" value="Embik | Sprawdzenie zamówienia" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/user-order-check.jsp" />
     </definition>
+
+    <definition name="adminOrder" extends="base">
+        <put-attribute name="title" value="Embik | Zamowienia" />
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-order.jsp"/>
+    </definition>
+
+    <definition name="adminProduct" extends="base">
+        <put-attribute name="title" value="Embik | Produkty"/>
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-product.jsp"/>
+    </definition>
+
+    <definition name="adminProductForm" extends="base">
+        <put-attribute name="title" value="Embik | Produkty | Formularz"/>
+        <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-product-form.jsp"/>
+    </definition>
+
 </tiles-definitions>

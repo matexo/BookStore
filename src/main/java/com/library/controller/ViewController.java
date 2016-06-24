@@ -85,18 +85,18 @@ public class ViewController {
     @RequestMapping(value = "admin/products" , method = RequestMethod.GET)
     public String adminProductView()
     {
-        return "productList";
+        return "adminProduct";
     }
 
     @RequestMapping(value = "admin/products/form" , method = RequestMethod.GET)
     public String adminProductFormView()
     {
-        return "productForm";
+        return "adminProductForm";
     }
 
     @RequestMapping(value = "admin/orders" , method = RequestMethod.GET)
     public String adminOrderView()
     {
-        return "orderList";
+        return "adminOrder";
     }
 }

@@ -54,5 +54,55 @@
 
     app.controller('CartController', function ($scope, $http) {
 
-    })
+    });
+
+
+
+    app.controller('AdminOrderController', function ($scope, $http) {
+        $http.get('/api/order').success(function (result) {
+            $scope.orders = result;
+        });
+    });
+
+    app.controller('AdminProductController', function ($scope, $http) {
+
+        $http.get('/api/book/all').success(function (result) {
+            $scope.books = result;
+        });
+
+        $http.get('/api/book/category/all').success(function (result) {
+            $scope.categories = result;
+        });
+
+        $scope.selectedBook = function (bookId) {
+            console.log(bookId);
+            console.log($scope.books);
+            $scope.book = $scope.books[bookId];
+        };
+
+        $scope.refresh = function () {
+            $http.get('/api/book/all').success(function (result) {
+                $scope.books = result;
+            });
+        };
+        
+        $scope.deleteBook = function (bookId) {
+            var url = 'api/book/' + bookId;
+            $http.delete( url,request,
+                {headers: {'api-key': localStorage.getItem('api-key')}})
+                .success(function (response) {
+                $scope.refresh();
+            });
+        };
+        
+        $scope.addOrEditProduct = function () {
+            
+        };
+        
+        $scope.getProduct = function (bookId) {
+            
+        };
+        
+    });
+    
 })();
