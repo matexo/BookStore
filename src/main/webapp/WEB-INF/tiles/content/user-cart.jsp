@@ -10,6 +10,7 @@
                 <thead>
                 <tr>
                     <td></td>
+                    <td></td>
                     <td><strong>Nazwa produktu</strong></td>
                     <td class="text-center"><strong>Cena za sztukę</strong></td>
                     <td class="text-center"><strong>Ilość sztuk</strong></td>
@@ -18,14 +19,17 @@
                 </thead>
                 <tr ng-repeat="item in cartItems">
                     <td>
-                        <button class="btn btn-danger" ng-click="removeFromCart(item.book.bookId)">
+                        <a class="btn btn-default btn-block" href="<spring:url value="/products/info/{{item.book.bookId}}"/>">Podgląd</a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-block" ng-click="removeFromCart(item.book.bookId)">
                             Usuń
                         </button>
                     </td>
-                    <td>{{item.book.title}}</td>
-                    <td class="text-center">{{item.book.unitPrice | currency:"PLN "}}</td>
-                    <td class="text-center">{{item.quantity}}</td>
-                    <td class="text-success text-right">{{item.totalPrice | currency:"PLN "}}</td>
+                    <td style="vertical-align: middle">{{item.book.title}}</td>
+                    <td style="vertical-align: middle" class="text-center">{{item.book.unitPrice | currency:"PLN "}}</td>
+                    <td style="vertical-align: middle" class="text-center">{{item.quantity}}</td>
+                    <td style="vertical-align: middle" class="text-success text-right">{{item.totalPrice | currency:"PLN "}}</td>
                 </tr>
             </table>
             <p class="text-right text-danger">Koszt całkowity: <strong>{{cartSum | currency:"PLN "}}</strong></p>
