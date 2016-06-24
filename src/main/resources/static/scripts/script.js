@@ -85,9 +85,42 @@
     });
 
     app.controller('CartController', function ($scope, $http) {
-        $http.get('/api/cart').success(function (result) {
-            $scope.orders = result;
-        });
+
+        $scope.refreshCart = function(cartId)
+        {
+            $http.get('/api/cart/' + $scope.cartId).success(function(cartInfo)
+                {
+                    $scope.cart = cartInfo;
+                }
+            );
+        };
+        
+        $scope.initCartId = function(cartId)
+        {
+            $scope.cartId = cartId;
+            $scope.refreshCart($scope.cartId);
+        };
+
+        $scope.addToCart = function(productId)
+        {
+            $http
+                .post('/api/cart/book/' + productId)
+                .success(function(cartInfo)
+                    {
+                        $scope.refreshCart($http.get('/api/cart/' + $scope.cartId));
+                        alert("Przedmiot został dodany do koszyka.");
+                    }
+                );
+        };
+
+        $scope.removeFromCart = function(productId)
+        {
+            $http
+                .delete('/api/cart/' + productId)
+                .success(function(){ $scope.refreshCart($scope.cartId);}
+                );
+        };
+
     });
 
 
