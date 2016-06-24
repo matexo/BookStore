@@ -74,4 +74,10 @@ public class CartController {
         else return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @RequestMapping(value = "/api/cart/id" , method = RequestMethod.GET)
+    public String getCartId(HttpServletRequest request)
+    {
+        return request.getSession().getId();
+    }
+
 }
