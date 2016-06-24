@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <div class="container-fluid margin-top-20" ng-controller="UserOrdersController">
+    <div ng-show="orders == ''" class="alert alert-danger col-md-6 col-md-offset-3 text-center">Brak zamówień</div>
     <div class="container" ng-repeat="customerOrder in orders">
         <div class="panel-heading">
             <h4 class="text-center"><strong>Zamowienie nr {{customerOrder.orderNumber}}</strong></h4>
@@ -72,7 +73,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Stan wysyłki:</strong></td>
-                                    <td style="min-width: 100px">{{customerOrder.shipped}}</td>
+                                    <td style="min-width: 100px">{{checkStatus(customerOrder.shipped)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Tracking:</strong></td>
@@ -80,7 +81,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Wpłata:</strong></td>
-                                    <td style="min-width: 100px">{{customerOrder.paid}}</td>
+                                    <td style="min-width: 100px">{{checkCash(customerOrder.paid)}}</td>
                                 </tr>
                             </table>
                         </div>

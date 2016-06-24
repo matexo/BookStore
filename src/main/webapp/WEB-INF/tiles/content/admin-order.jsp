@@ -30,8 +30,8 @@
                         <td>{{order.customerInfo.email}}</td>
                         <td>{{order.customerInfo.phoneNumber}}</td>
                         <td>{{order.cart.totalCost | currency:"PLN "}}</td>
-                        <td>{{order.shipped}}</td>
-                        <td>{{order.paid}}</td>
+                        <td>{{checkStatus(order.shipped)}}</td>
+                        <td>{{checkCash(order.paid)}}</td>
                     </tr>
                 </table>
             </div>

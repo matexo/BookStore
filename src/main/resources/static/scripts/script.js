@@ -100,10 +100,24 @@
     });
     
     app.controller('UserOrdersController', function ($scope, $http) {
-        $http.get('/api/order/user').success(function (result) {
+        $http.get('/api/order/user',{headers:{'apiKey':localStorage.getItem('apiKey')}}).success(function (result) {
             $scope.orders = result;
             console.log(result);
         });
+
+        $scope.checkStatus = function (value) {
+            if (value == true)
+                return "Wysłana";
+            else
+                return "Niewysłana";
+        };
+
+        $scope.checkCash = function (value) {
+            if (value == true)
+                return "Zapłacono";
+            else
+                return "Niezapłacono";
+        };
     });
 
     app.controller('BookDetailsController', function ($scope, $http, $window) {
@@ -156,6 +170,20 @@
             .success(function (response) {
                 $scope.orders = response;
             });
+
+        $scope.checkStatus = function (value) {
+            if (value == true)
+                return "Wysłana";
+            else
+                return "Niewysłana";
+        };
+
+        $scope.checkCash = function (value) {
+            if (value == true)
+                return "Zapłacono";
+            else
+                return "Niezapłacono";
+        };
 
         $scope.parseOrderDate = function (date) {
             var newdate = new Date(date);
