@@ -77,6 +77,14 @@
 
     });
 
+    app.controller('BookDetailsController', function ($scope, $http, $location) {
+        alert($location.path());
+        $http.get('/api/book/42').success(function (result) {
+            $scope.product = result;
+            console.log(result);
+        });
+    });
+
     app.controller('CartController', function ($scope, $http) {
 
     });
