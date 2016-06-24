@@ -114,9 +114,11 @@
     });
 
     app.controller('AdminOrderController', function ($scope, $http) {
-        $http.get('/api/order').success(function (result) {
-            $scope.orders = result;
-        });
+        $http.get('/api/order/all', {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}},
+            {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}})
+            .success(function (response) {
+                $scope.orders = response;
+            });
     });
 
     app.controller('AdminProductController', function ($scope, $http, $window) {

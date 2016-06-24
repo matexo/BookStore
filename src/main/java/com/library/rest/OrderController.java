@@ -26,7 +26,7 @@ public class OrderController {
     private UserService userService;
 
     @RequestMapping(value = "/all" , method = RequestMethod.GET)
-    public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders(@RequestHeader("api-key") String apiKey)
+    public ResponseEntity<List<CustomerOrder>> getAllCustomerOrders(@RequestHeader("apiKey") String apiKey)
     {
         if(userService.getRole(apiKey).equals("ROLE_ADMIN"))
         {
