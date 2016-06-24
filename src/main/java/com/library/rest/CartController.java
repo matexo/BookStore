@@ -25,10 +25,17 @@ public class CartController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "/{cartId}" , method = RequestMethod.GET)
-    public ResponseEntity<Cart> getCart(@PathVariable String cartId)
+    @RequestMapping(value = "" , method = RequestMethod.GET)
+    public ResponseEntity<Cart> getCart(HttpServletRequest request)
     {
+        String cartId = request.getSession().getId();
         Cart cart = cartService.getCart(cartId);
+        if(cart == null)
+        {
+            cart = new Cart();
+            cart.setCartId(cartId);
+            cartService.addNewCart(cart);
+        }
         if(cart != null)
             return new ResponseEntity<>(cart, HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
