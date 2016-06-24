@@ -22,7 +22,7 @@
                 </tr>
                 </thead>
                 <tr ng-repeat="book in books">
-                    <td><strong>{{book.bookId }}</strong></td>
+                    <td><strong>{{book.bookId}}</strong></td>
                     <td>{{book.title}}</td>
                     <td>{{book.author}}</td>
                     <td>{{book.bookCategory[0].bookCategory}}</td>
@@ -33,7 +33,7 @@
                         więcej</a></td>
                     <td>
                     <td>
-                        <button class="btn btn-danger" ng-model="selBook" ng-click="deleteBook(selBook)">Usuń</button>
+                        <button class="btn btn-danger" ng-click="deleteBook(book.bookId)">Usuń</button>
                     </td>
 
                 </tr>
