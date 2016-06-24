@@ -31,12 +31,8 @@
                             <input path="author" id="author" class="form-control" ng-model="book.author"/>
                         </div>
                         <div class="form-group">
-                            <label>Kategoria</label>
-                            <select ng-model="book.category">
-                                <option ng-repeat="category in categories" value="{{category.bookCategoryId}}">
-                                    {{category.bookCategory}}
-                                </option>
-                            </select>
+                            <label for="category">Kategoria</label>
+                            <input id="category" class="form-control" ng-model="book.category">
                         </div>
                         <div class="form-group">
                             <label for="unitPrice">Cena</label>
@@ -59,7 +55,7 @@
                         </div>
 
                         <input type="submit" value="Wyslij formularz"
-                               class="btn btn-success btn-block"/>
+                               class="btn btn-success btn-block" ng-click="addOrEditProduct()"/>
                     </form>
                 </div>
             </div>
