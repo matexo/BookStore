@@ -68,11 +68,15 @@
 
 
     app.controller('UserOrderController', function ($scope, $http) {
-        $scope.getOrder = function ($http) {
-            $http.get('/api/order').success(function (result) {
-                $scope.orderNumber = result;
-            });
-        }
+
+            $scope.getCustomerOrder = function (orderNumber) {
+                var url = '/api/order/' + $scope.orderNumber;
+                console.log(url + orderNumber);
+                $http.get(url).success(function (result) {
+                    $scope.customerOrder = result;
+                });
+
+        };
 
     });
 

@@ -87,4 +87,9 @@ public class CartController {
         return request.getSession().getId();
     }
 
+    @RequestMapping(value = "/test" , method = RequestMethod.GET)
+    public ResponseEntity<Cart> getCart(){
+        return new ResponseEntity<Cart>(cartService.getCart(),HttpStatus.OK);
+    }
+
 }

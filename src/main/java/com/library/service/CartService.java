@@ -42,6 +42,7 @@ public class CartService {
         return cartRepostitory.save(cart);
     }
 
+    public Cart getCart() { return cartRepostitory.findOne("1");}
 
 
 

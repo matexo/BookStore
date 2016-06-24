@@ -1,5 +1,7 @@
 package com.library.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -38,6 +40,7 @@ public class CustomerOrder implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "userId")
+    @JsonIgnore
     private User user;
 
     public boolean isShipped() {

@@ -33,7 +33,7 @@ public class ViewController {
         return "productInfo";
     }
 
-    @RequestMapping(value = "order/status/", method = RequestMethod.GET)
+    @RequestMapping(value = "order/status", method = RequestMethod.GET)
     public String orderStatusView() // orderCheck
     {
         return "orderStatus";
