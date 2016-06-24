@@ -3,7 +3,7 @@
 
     app.controller('SessionController', function ($scope, $window, $http) {
         $scope.showmessage = localStorage.getItem('showParcelInfo');
-        if ($scope.showmessage) {
+        if ($scope.showmessage == 'true') {
             localStorage.setItem('showParcelInfo', false);
             $('.cart-finished').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
             setTimeout(function () {
