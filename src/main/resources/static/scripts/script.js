@@ -2,6 +2,15 @@
     var app = angular.module('bookStore', ['ngStorage']);
 
     app.controller('SessionController', function ($scope, $window, $http) {
+        $scope.showmessage = localStorage.getItem('showParcelInfo');
+        if ($scope.showmessage) {
+            localStorage.setItem('showParcelInfo', false);
+            $('.cart-finished').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
+            setTimeout(function () {
+                $('.cart-finished').removeClass('fadeIn').addClass('fadeOut');
+            }, 1500);
+        }
+
         $scope.loggedIn = localStorage.getItem('loggedIn');
         $scope.isAdmin = localStorage.getItem('isAdmin');
         $scope.apiKey = localStorage.getItem('apiKey');
@@ -115,7 +124,7 @@
                 $('.cart-add').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
                 setTimeout(function () {
                     $('.cart-add').removeClass('fadeIn').addClass('fadeOut');
-                }, 1000);
+                }, 1500);
             });
         };
 
@@ -125,7 +134,7 @@
                 $('.cart-remove').removeClass('fadeOut').addClass('fadeIn').css('visibility', 'visible');
                 setTimeout(function () {
                     $('.cart-remove').removeClass('fadeIn').addClass('fadeOut');
-                }, 1000);
+                }, 1500);
             });
         };
     });
@@ -192,7 +201,7 @@
         };
     });
 
-    app.controller('OrderController', function ($scope, $http) {
+    app.controller('OrderController', function ($scope, $http, $window) {
         $http.get('/api/cart').success(function (result) {
             $scope.cartId = result['cartId'];
         });
@@ -216,9 +225,9 @@
                 },
                 "shippingMethod": method
             };
-            console.log(request);
             $http.post('/api/order', request).success(function () {
-                console.log("OK");
+                localStorage.setItem('showParcelInfo', true);
+                $window.location = '/';
             });
         };
     });

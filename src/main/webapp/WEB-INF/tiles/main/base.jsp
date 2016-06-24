@@ -16,6 +16,7 @@
 <div class="wrapper" ng-controller="CartController">
     <div class="alert alert-danger animated cart-info text-center cart-remove">Produkt został usunięty z koszyka</div>
     <div class="alert alert-success animated cart-info text-center cart-add">Produkt został dodany do koszyka</div>
+    <div class="alert alert-success animated cart-info text-center cart-finished">Zlecenie przyjęto do realizacji</div>
     <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="content1"/>
     <tiles:insertAttribute name="content2"/>
