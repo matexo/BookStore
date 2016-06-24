@@ -11,21 +11,21 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="username">Login</label>
-                            <input id="username" class="form-control" ng-model="username"/>
+                            <input id="username" class="form-control" ng-model="user.username"/>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input id="email" class="form-control" ng-model="email" type="email"/>
+                            <input id="email" class="form-control" ng-model="user.email" type="email"/>
                         </div>
                         <div class="form-group">
                             <label for="password">Hasło</label>
-                            <input id="password" class="form-control" ng-model="password" type="password"/>
+                            <input id="password" class="form-control" ng-model="user.password" type="password"/>
                         </div>
                         <div class="alert alert-danger login-alert" role="alert" ng-show="success">Zostałeś zarejestrowany. Sprawdź swoją skrzynkę odbiorczą</div>
                         <div class="alert alert-danger login-alert" role="alert" ng-show="error">Rejestracja nieudana</div>
                         <div class="form-group">
                             <input type="submit" value="Utwórz" class="btn btn-success btn-block"
-                                   ng-click="register(username,email,password)"/>
+                                   ng-click="register(user)"/>
                         </div>
                     </div>
                 </div>

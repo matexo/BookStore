@@ -32,7 +32,6 @@ public class User implements Serializable {
 
     @NotNull
     @Size(min = 6, max = 60)
-    @JsonIgnore
     private String password;
 
     @NotNull

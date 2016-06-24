@@ -27,9 +27,9 @@
             localStorage.setItem('apiKey', null);
         };
 
-        $scope.register = function (username, email, password) {
+        $scope.register = function (user) {
             var request = {'login': username, 'email': email, 'password': password};
-            $http.post('api/user/addUser', request).then(function (response) {
+            $http.post('api/user/addUser', user).then(function (response) {
                 $scope.success = true;
             }, function (response) {
                 $scope.error = true;
@@ -117,24 +117,34 @@
                 $scope.books = result;
             });
         };
-
+        
         $scope.deleteBook = function (bookId) {
+            console.log(bookId);
             var url = 'api/book/' + bookId;
-            $http.delete(url, request,
+            var request = {
+                method: 'DELETE',
+                url: url,
+                headers: {
+                    'Content-Type': 'application/json' ,
+                    'api-key': localStorage.getItem('api-key')
+                }
+            };
+            $http(request)
+                .success(function (response) {
+                $scope.refresh();
+            });
+        };
+        
+        $scope.addOrEditProduct = function () {
+            $http.post( 'api/book',request,
                 {headers: {'api-key': localStorage.getItem('api-key')}})
                 .success(function (response) {
                     $scope.refresh();
                 });
         };
+        
 
-        $scope.addOrEditProduct = function () {
-
-        };
-
-        $scope.getProduct = function (bookId) {
-
-        };
-
+        
     });
-
+    
 })();

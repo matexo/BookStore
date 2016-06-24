@@ -26,10 +26,8 @@
                 <td><a class="btn btn-success"
                        href=<spring:url value="/products/info/{{book.bookId}}"/>>Pokaż
                     więcej</a></td>
-                <td><a class="btn btn-success"
-                       href=<spring:url value="/admin/productForm?id=${product.getProductId()}"/>>Edytuj</a></td>
-                <td><a class="btn btn-danger"
-                       href=<spring:url value="/admin/deleteProduct/${product.getProductId()}"/>>Usuń produkt</a></td>
+                <td>
+                <td><button ng-model="selBook" ng-click="deleteBook(selBook)">Usuń</button></td>
 
             </tr>
     </table>
