@@ -10,11 +10,11 @@
         <div class="row" ng-controller="BooksController">
             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" ng-repeat="book in books | orderBy:'-bookId' | limitTo: 12">
                 <div class="thumbnail">
-                    <img class="img-thumbnail" src="<spring:url value="images/products/{{book.title}}.jpg"/>"/>
+                    <img class="img-thumbnail" src="<spring:url value="/images/products/{{book.title}}.jpg"/>"/>
                     <div class="caption">
                         <div class="container-fluid">
                             <h5><strong>
-                                <a href="<spring:url value="products/info/{{book.bookId}}"/>">{{book.title}}</a>
+                                <a href="<spring:url value="/products/info/{{book.bookId}}"/>">{{book.title}}</a>
                             </strong></h5>
                             <h6>{{book.author}}</h6>
                             <h6 class="text-muted">{{book.bookCategory[0].bookCategory}}</h6>

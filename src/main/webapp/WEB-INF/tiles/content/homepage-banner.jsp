@@ -3,6 +3,6 @@
 
 <div class="container-fluid">
     <div class="row">
-        <img class="banner img-responsive" src="<spring:url value="images/banner.jpg"/>"/>
+        <img class="banner img-responsive" src="<spring:url value="/images/banner.jpg"/>"/>
     </div>
 </div>

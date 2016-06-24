@@ -1,14 +1,30 @@
 (function () {
     var app = angular.module('bookStore', ['ngStorage']);
 
-    app.controller('SessionController', function ($scope) {
+    app.controller('SessionController', function ($scope, $window, $http) {
         $scope.loggedIn = localStorage.getItem('loggedIn');
-        $scope.login = function () {
-            localStorage.setItem('loggedIn', true);
+        $scope.isAdmin = localStorage.getItem('isAdmin');
+        $scope.apiKey = localStorage.getItem('apiKey');
+
+        $scope.login = function (username, password) {
+            var request = {'login': username, 'password': password};
+            $http.post('api/login', request).then(function (response) {
+                localStorage.setItem('loggedIn', true);
+                localStorage.setItem('apiKey', response['data']['apiKey']);
+                if (response['data']['role']['role'] == 'ROLE_USER')
+                    localStorage.setItem('isAdmin', false);
+                else if (response['data']['role']['role'] == 'ROLE_ADMIN')
+                    localStorage.setItem('isAdmin', true);
+                $window.location = '/';
+            }, function (request) {
+                $scope.error = true;
+            });
         };
 
         $scope.logout = function () {
             localStorage.setItem('loggedIn', false);
+            localStorage.setItem('isAdmin', false);
+            localStorage.setItem('apiKey', null);
         };
     });
 
@@ -28,7 +44,7 @@
             return false;
         };
 
-        $scope.clearCategory = function(){
+        $scope.clearCategory = function () {
             $scope.filteredCategory = null;
         };
 

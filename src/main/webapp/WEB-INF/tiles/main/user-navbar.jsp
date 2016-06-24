@@ -38,23 +38,23 @@
                     </li>
                 </ul>
                 <hr class="visible-xs divider">
-                <ul class="nav navbar-nav navbar-right" ng-controller="SessionController">
+                <ul class="nav navbar-nav navbar-right">
                     <li ng-hide={{loggedIn}}>
                         <a href=<spring:url value="/userForm"/>>
                             <span class="glyphicon glyphicon-user"></span> Nowe konto
                         </a>
                     </li>
-                    <li ng-click="login()" ng-hide={{loggedIn}}>
+                    <li ng-hide={{loggedIn}}>
                         <a href=<spring:url value="/login"/>>
                             <span class="glyphicon glyphicon-log-in"></span> Zaloguj
                         </a>
                     </li>
-                    <li ng-show={{loggedIn}}>
+                    <li ng-show="{{loggedIn}} && !{{isAdmin}}">
                         <a href=<spring:url value="/user/orders"/>>
                             <span class="glyphicon glyphicon-eye-open"></span> Moje zamówienia
                         </a>
                     </li>
-                    <li ng-show={{loggedIn}}>
+                    <li ng-show={{isAdmin}}>
                         <a href=<spring:url value="/admin"/>>
                             <span class="glyphicon glyphicon-cog"></span> Panel administratora
                         </a>
@@ -64,7 +64,7 @@
                             <span class="glyphicon glyphicon-log-out"></span> Wyloguj
                         </a>
                     </li>
-                    <li>
+                    <li ng-hide={{isAdmin}}>
                         <a href="<spring:url value="/cart"/>">
                             <span class="glyphicon glyphicon-shopping-cart"></span> Koszyk
                         </a>
