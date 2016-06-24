@@ -97,7 +97,13 @@
                     return "Niezapłacono";
             };
         };
-
+    });
+    
+    app.controller('UserOrdersController', function ($scope, $http) {
+        $http.get('/api/order/user').success(function (result) {
+            $scope.orders = result;
+            console.log(result);
+        });
     });
 
     app.controller('BookDetailsController', function ($scope, $http, $window) {
