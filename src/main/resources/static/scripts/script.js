@@ -78,51 +78,36 @@
 
     app.controller('BookDetailsController', function ($scope, $http, $window) {
         var productID = $window.location.pathname.split("/")[3];
-        $http.get('/api/book/'+productID).success(function (result) {
-             $scope.product = result;
-             console.log(result);
-         });
+        $http.get('/api/book/' + productID).success(function (result) {
+            $scope.product = result;
+            console.log(result);
+        });
     });
 
     app.controller('CartController', function ($scope, $http) {
-
-        $scope.refreshCart = function(cartId)
-        {
-            $http.get('/api/cart/' + $scope.cartId).success(function(cartInfo)
-                {
-                    $scope.cart = cartInfo;
-                }
-            );
-        };
-        
-        $scope.initCartId = function(cartId)
-        {
-            $scope.cartId = cartId;
-            $scope.refreshCart($scope.cartId);
+        $scope.refreshCart = function () {
+            $http.get('api/cart').success(function (result) {
+                $scope.cartItems = result['cartItems'];
+                $scope.cartSum = result['totalCost'];
+            });
         };
 
-        $scope.addToCart = function(productId)
-        {
-            $http
-                .post('/api/cart/book/' + productId)
-                .success(function(cartInfo)
-                    {
-                        $scope.refreshCart($http.get('/api/cart/' + $scope.cartId));
-                        alert("Przedmiot został dodany do koszyka.");
-                    }
-                );
+        $scope.refreshCart();
+
+        $scope.addToCart = function (productId) {
+            $http.post('/api/cart/book/' + productId).success(function (response) {
+                $scope.refreshCart();
+                alert("Przedmiot został dodany do koszyka.");
+            });
         };
 
-        $scope.removeFromCart = function(productId)
-        {
-            $http
-                .delete('/api/cart/' + productId)
-                .success(function(){ $scope.refreshCart($scope.cartId);}
-                );
+        $scope.removeFromCart = function (productId) {
+            $http.delete('/api/cart/book/' + productId).success(function (response) {
+                $scope.refreshCart();
+                alert("Przedmiot został usunięty z koszyka.");
+            });
         };
-
     });
-
 
     app.controller('AdminOrderController', function ($scope, $http) {
         $http.get('/api/order').success(function (result) {
@@ -130,7 +115,7 @@
         });
     });
 
-    app.controller('AdminProductController', function ($scope, $http , $window) {
+    app.controller('AdminProductController', function ($scope, $http, $window) {
 
         $http.get('/api/book/all').success(function (result) {
             $scope.books = result;
@@ -143,7 +128,7 @@
         $scope.selectedBook = function (bookId) {
             console.log(bookId);
             console.log($scope.books);
-            $scope.book = $scope.books[bookId-1];
+            $scope.book = $scope.books[bookId - 1];
         };
 
         $scope.refresh = function () {
@@ -151,7 +136,7 @@
                 $scope.books = result;
             });
         };
-        
+
         $scope.deleteBook = function (bookId) {
             console.log(bookId);
             var url = '/api/book/' + bookId;
@@ -160,26 +145,25 @@
                 method: 'DELETE',
                 url: url,
                 headers: {
-                    'Content-Type': 'application/json' ,
+                    'Content-Type': 'application/json',
                     'apiKey': localStorage.getItem('apiKey')
                 }
             };
             $http(request)
                 .success(function (response) {
-                $scope.refresh();
-            });
+                    $scope.refresh();
+                });
         };
-        
+
         $scope.addOrEditProduct = function () {
-            $http.post( '/api/book', $scope.book ,
-                {headers: {'Content-Type': 'application/json' , 'apiKey': localStorage.getItem('apiKey')}})
+            $http.post('/api/book', $scope.book,
+                {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}})
                 .success(function (response) {
                     $window.location = '/admin/products';
                 });
         };
-        
 
-        
+
     });
-    
+
 })();

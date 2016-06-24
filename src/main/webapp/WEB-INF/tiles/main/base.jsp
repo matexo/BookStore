@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="<spring:url value="/styles/style.css"/>"/>
     <title><tiles:insertAttribute name="title"/></title>
 </head>
-<body>
-<div class="wrapper" ng-controller="SessionController">
+<body ng-controller="SessionController">
+<div class="wrapper" ng-controller="CartController">
     <tiles:insertAttribute name="navbar"/>
     <tiles:insertAttribute name="content1"/>
     <tiles:insertAttribute name="content2"/>

@@ -23,7 +23,7 @@
                                     ng-hide="book.quantity > 0 || {{isAdmin}}">
                                 Produkt niedostępny
                             </button>
-                            <button class="btn btn-success btn-block margin-top-20" ng-show="book.quantity > 0 && !{{isAdmin}}">Dodaj do koszyka
+                            <button class="btn btn-success btn-block margin-top-20" ng-show="book.quantity > 0 && !{{isAdmin}}" ng-click="addToCart(book.bookId)">Dodaj do koszyka
                             </button>
                             <button class="btn btn-info btn-block margin-top-20" ng-show="{{isAdmin}}">
                                 <a href="<spring:url value="/products/info/{{book.bookId}}"/>">Szczegóły</a>
