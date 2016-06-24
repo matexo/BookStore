@@ -26,6 +26,15 @@
             localStorage.setItem('isAdmin', false);
             localStorage.setItem('apiKey', null);
         };
+
+        $scope.register = function (username, email, password) {
+            var request = {'login': username, 'email': email, 'password': password};
+            $http.post('api/user/addUser', request).then(function (response) {
+                $scope.success = true;
+            }, function (response) {
+                $scope.error = true;
+            });
+        }
     });
 
     app.controller('BooksController', function ($scope, $http) {
@@ -73,7 +82,6 @@
     });
 
 
-
     app.controller('AdminOrderController', function ($scope, $http) {
         $http.get('/api/order').success(function (result) {
             $scope.orders = result;
@@ -101,24 +109,24 @@
                 $scope.books = result;
             });
         };
-        
+
         $scope.deleteBook = function (bookId) {
             var url = 'api/book/' + bookId;
-            $http.delete( url,request,
+            $http.delete(url, request,
                 {headers: {'api-key': localStorage.getItem('api-key')}})
                 .success(function (response) {
-                $scope.refresh();
-            });
+                    $scope.refresh();
+                });
         };
-        
+
         $scope.addOrEditProduct = function () {
-            
+
         };
-        
+
         $scope.getProduct = function (bookId) {
-            
+
         };
-        
+
     });
-    
+
 })();
