@@ -130,9 +130,9 @@ INSERT INTO role(user_id , role) VALUES (null , 'ROLE_ADMIN');
 
 -- admin + user
 INSERT INTO users(id , role_id , activated , email , password , token , username , acv_time_stamp)
-VALUES (1 , 1 , FALSE , 'admin@test.pl' , 'admin' , 'admin' , 'admin' , to_date('2014/04/25', 'YYYY/MM/DD'));
+VALUES (1 , 1 , TRUE , 'admin@test.pl' , 'adminadmin' , 'admin' , 'admin' , to_date('2014/04/25', 'YYYY/MM/DD'));
 INSERT INTO users(id , role_id , activated , email , password , token , username , acv_time_stamp)
-VALUES (2 , 1 , FALSE , 'user@test.pl' , 'user' , 'user' , 'user' , to_date('2014/04/25', 'YYYY/MM/DD'));
+VALUES (2 , 1 , TRUE , 'user@test.pl' , 'useruser' , 'user' , 'user' , to_date('2014/04/25', 'YYYY/MM/DD'));
 
 UPDATE role SET user_id = 2 WHERE id = 1;
 UPDATE role SET user_id = 1 WHERE id = 2;
