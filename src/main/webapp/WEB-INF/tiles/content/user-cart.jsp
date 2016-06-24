@@ -9,12 +9,12 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td><strong>Nazwa produktu</strong></td>
-                    <td class="text-center"><strong>Cena za sztukę</strong></td>
-                    <td class="text-center"><strong>Ilość sztuk</strong></td>
-                    <td class="text-right"><strong>Suma</strong></td>
+                    <th></th>
+                    <th></th>
+                    <th>Nazwa produktu</th>
+                    <th class="text-center">Cena za sztukę</th>
+                    <th class="text-center">Ilość sztuk</th>
+                    <th class="text-right">Suma</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="item in cartItems">
