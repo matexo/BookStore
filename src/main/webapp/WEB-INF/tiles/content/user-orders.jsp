@@ -1,6 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<div class="panel panel-default margin-top-20" ng-controller="UserOrdersController">
+<div class="container-fluid margin-top-20" ng-controller="UserOrdersController">
     <div class="container" ng-repeat="customerOrder in orders">
         <div class="panel-heading">
             <h4 class="text-center"><strong>Zamowienie nr {{customerOrder.orderNumber}}</strong></h4>
