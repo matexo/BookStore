@@ -48,16 +48,19 @@
 
     <definition name="adminOrder" extends="base">
         <put-attribute name="title" value="Embik | Zamowienia" />
+        <put-attribute name="navbar" value="/WEB-INF/tiles/main/admin-navbar.jsp" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-order.jsp"/>
     </definition>
 
     <definition name="adminProduct" extends="base">
         <put-attribute name="title" value="Embik | Produkty"/>
+        <put-attribute name="navbar" value="/WEB-INF/tiles/main/admin-navbar.jsp" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-product.jsp"/>
     </definition>
 
     <definition name="adminProductForm" extends="base">
         <put-attribute name="title" value="Embik | Produkty | Formularz"/>
+        <put-attribute name="navbar" value="/WEB-INF/tiles/main/admin-navbar.jsp" />
         <put-attribute name="content1" value="/WEB-INF/tiles/content/admin-product-form.jsp"/>
     </definition>
 
