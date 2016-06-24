@@ -150,6 +150,11 @@
             .success(function (response) {
                 $scope.orders = response;
             });
+
+        $scope.parseOrderDate = function (date) {
+            var newdate = new Date(date);
+            return newdate.toDateString() + "\n" + newdate.toTimeString();
+        }
     });
 
     app.controller('AdminProductController', function ($scope, $http, $window) {
