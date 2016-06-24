@@ -90,7 +90,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Stan wysyłki:</strong></td>
-                                    <td style="min-width: 100px">{{customerOrder.shipped}}</td>
+                                    <td style="min-width: 100px">{{checkStatus(customerOrder.shipped)}}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Tracking:</strong></td>
@@ -98,7 +98,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-right"><strong>Wpłata:</strong></td>
-                                    <td style="min-width: 100px">{{customerOrder.paid}}</td>
+                                    <td style="min-width: 100px">{{checkCash(customerOrder.paid)}}</td>
                                 </tr>
                             </table>
                         </div>

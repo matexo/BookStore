@@ -73,6 +73,20 @@
                 $scope.customerOrder = result;
                 console.log(result);
             });
+
+            $scope.checkStatus = function (value) {
+                if (value == true)
+                    return "Wysłana";
+                else
+                    return "Niewysłana";
+            };
+
+            $scope.checkCash = function (value) {
+                if (value == true)
+                    return "Zapłacono";
+                else
+                    return "Niezapłacono";
+            };
         };
 
     });
@@ -117,7 +131,12 @@
     });
 
     app.controller('AdminOrderController', function ($scope, $http) {
-        $http.get('/api/order/all', {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}},
+        $http.get('/api/order/all', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apiKey': localStorage.getItem('apiKey')
+                }
+            },
             {headers: {'Content-Type': 'application/json', 'apiKey': localStorage.getItem('apiKey')}})
             .success(function (response) {
                 $scope.orders = response;
